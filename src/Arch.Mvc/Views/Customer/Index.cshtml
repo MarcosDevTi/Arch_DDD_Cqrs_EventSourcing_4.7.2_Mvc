@@ -1,0 +1,48 @@
+﻿@using Arch.Mvc.Helpers
+@model  Arch.Paging.PagedResult<Arch.Cqrs.Client.Query.Customer.Models.CustomerIndex>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+
+
+@Html.ActionLink("Create New", "Create", null, new { @class = "btn btn-primary" })
+
+<div class="row">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th><a href="@Html.GetSortingUrl(Model, "Id", this.Request.RawUrl)">Id</a></th>
+                <th><a href="@Html.GetSortingUrl(Model, "FirstName", this.Request.RawUrl)">Name</a></th>
+                <th><a href="@Html.GetSortingUrl(Model, "EmailAddress", this.Request.RawUrl)">Email</a></th>
+                <th><a href="@Html.GetSortingUrl(Model, "BirthDate", this.Request.RawUrl)">BirthDate</a></th>
+                <th><a href="@Html.GetSortingUrl(Model, "Score", this.Request.RawUrl)">Score</a></th>
+                <th><a href="@Html.GetSortingUrl(Model, "Address.Street", this.Request.RawUrl)">Address</a></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @{
+                foreach (var item in this.Model)
+                {
+                    <tr>
+                        <td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@item.Email</td>
+                        <td>@item.BirthDate</td>
+                        <td>@item.Score</td>
+                        <td>@item.Address</td>
+                        <td>@Html.ActionLink("Edit", "Edit", new { customerId = item.Id }, new { @class = "btn btn-warning" })</td>
+                        <td>@Html.ActionLink("History", "history", new { aggregateId = item.Id }, new { @class = "btn btn-success" })</td>
+                        <td>@Html.ActionLink("Delete", "Delete", new { item.Id }, new { @class = "btn btn-danger" })</td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+    @Html.GetPager(this.Model, this.Request.RawUrl)
+</div>
