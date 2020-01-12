@@ -33,6 +33,13 @@ namespace Arch.Domain.Models
             foreach (var order in orders) Orders.Add(order);
         }
 
+        public void UpdateAddress(string street, string number, string zipCode)
+        {
+            Address.Street = street;
+            Address.Number = number;
+            Address.ZipCode = zipCode;
+        }
+
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string EmailAddress { get; set; }

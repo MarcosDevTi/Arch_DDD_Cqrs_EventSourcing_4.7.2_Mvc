@@ -13,8 +13,6 @@ namespace Arch.Cqrs.Handlers
 
         public static string UpdateEntity(this DbContext context, Entity entity)
         {
-            var entry = context.Entry(entity);
-            entry.State = EntityState.Modified;
             return $"Updated {entity.GetType().Name}";
         }
 

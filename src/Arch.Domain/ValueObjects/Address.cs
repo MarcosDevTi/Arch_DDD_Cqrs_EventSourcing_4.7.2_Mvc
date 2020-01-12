@@ -18,17 +18,9 @@ namespace Arch.Domain.ValueObjects
             ZipCode = zipCode;
         }
 
-        public Address Update(string street, string number, string zipCode)
-        {
-            Street = street;
-            Number = number;
-            ZipCode = zipCode;
-            return this;
-        }
-
-        public string Street { get; private set; }
-        public string Number { get; private set; }
-        public string City { get; private set; }
-        public string ZipCode { get; private set; }
+        public string Street { get; set; }
+        public string Number { get; set; }
+        public string City { get; set; }
+        public string ZipCode { get; set; }
     }
 }

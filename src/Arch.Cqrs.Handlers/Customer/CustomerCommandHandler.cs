@@ -50,13 +50,16 @@ namespace Arch.Cqrs.Handlers.Customer
             ValidateCommand(command);
             command.AggregateId = command.Id;
 
-            var customer = Mapper.Map<Domain.Models.Customer>(command);
+
+            var customerTrackerd = _architectureContext.Customers.Include(_ => _.Address).FirstOrDefault(_ => _.Id == command.Id);
+            var customer = Mapper.Map(command, customerTrackerd);
 
             ExistsValidation(x => 
                 x.EmailAddress == customer.EmailAddress && x.Id != command.Id, command.Action, "The customer e-mail has already been taken.");
 
             var lastEntity = Db().Include(_ => _.Address).AsNoTracking()
                 .OrderBy(_ => _.CreatedDate).FirstOrDefault(_ => _.Id == command.Id);
+
             var action = _architectureContext.UpdateEntity(customer);
             var lastCommand = Mapper.Map(lastEntity, lastEntity.GetType(), command.GetType());
             Commit(customer, command, action, lastCommand);

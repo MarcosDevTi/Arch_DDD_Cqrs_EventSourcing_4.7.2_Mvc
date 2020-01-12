@@ -27,15 +27,19 @@ namespace Arch.Cqrs.Client.Command.Customer
         public void Map(IMapperConfigurationExpression cfg)
         {
             cfg.CreateMap<UpdateCustomer, Domain.Models.Customer>()
-                .ConstructUsing(c => new Domain.Models.Customer(
+                .ConstructUsing(c =>
+                {
+                    var customer =
+                    new Domain.Models.Customer(
                     c.FirstName,
                     c.LastName,
                     c.Email,
                     c.BirthDate,
                     c.Id
-                    ))
-                    .ForMember(d => d.Address, opt => opt.MapFrom(s =>
-                             new Address().Update(s.Street, s.Number, s.ZipCode)))
+                    );
+                    customer.UpdateAddress(c.Street, c.Number, c.ZipCode);
+                    return customer;
+                })
                 .IgnoreAllPropertiesWithAnInaccessibleSetter();
 
             cfg.CreateMap<Domain.Models.Customer, UpdateCustomer>()
