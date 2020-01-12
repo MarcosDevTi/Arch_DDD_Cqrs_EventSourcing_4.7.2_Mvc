@@ -17,7 +17,7 @@ namespace Arch.Mvc.Helpers
 
             var trHead = new TagBuilder("tr");
             var trHeadStr = "";
-            listTh.Select(_ =>
+            listTh?.Select(_ =>
             {
                 var tg = new TagBuilder("th");
                 tg.InnerHtml += _;

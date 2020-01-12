@@ -39,6 +39,7 @@ namespace Arch.Cqrs.Handlers.Customer
                     faker.Name.LastName(),
                     faker.Person.Email,
                     faker.Date.Between(minDate, maxDate));
+                customer.Score = faker.Random.Int(0, 100);
 
                 var address = new Address(faker.Address.StreetName(), faker.Address.BuildingNumber(), faker.Address.City(), faker.Address.ZipCode());
                 customer.Address = address;
@@ -73,6 +74,8 @@ namespace Arch.Cqrs.Handlers.Customer
                     faker.Person.Email,
                     faker.Date.Between(minDate, maxDate)
                     );
+                customer.Score = faker.Random.Int();
+
                 customer.Address = address;
                 customer.AddressId = idAddress;
 
