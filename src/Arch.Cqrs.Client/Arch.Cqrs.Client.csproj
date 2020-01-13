@@ -132,12 +132,6 @@
     <Compile Include="Query\OrderItem\Models\OrderItemIndex.cs" />
     <Compile Include="Query\OrderItem\Queries\GetCart.cs" />
     <Compile Include="Query\OrderItem\Queries\GetOrderItensIndex.cs" />
-    <Compile Include="Query\Product\Models\ProductDetails.cs" />
-    <Compile Include="Query\Product\Models\ProductDropDownItem.cs" />
-    <Compile Include="Query\Product\Models\ProductIndex.cs" />
-    <Compile Include="Query\Product\Queries\GetProductDetails.cs" />
-    <Compile Include="Query\Product\Queries\GetProductsDropDownList.cs" />
-    <Compile Include="Query\Product\Queries\GetProductsIndex.cs" />
     <Compile Include="Query\User\UserExists.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -160,6 +154,9 @@
       <Project>{C8EFFA6B-6A3A-4CDB-8884-5D3C4A63C6BD}</Project>
       <Name>Arch.Paging</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Query\Product\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

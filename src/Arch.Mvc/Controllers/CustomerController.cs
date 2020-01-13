@@ -34,6 +34,15 @@ namespace Arch.Mvc.Controllers
             return View(pagedResult);
         }
 
+        [HttpGet]
+        public ActionResult Create()
+        {
+            ViewBag.HasError = false;
+            ViewBag.Errors = new List<string>();
+
+            return View();
+        }
+
         [HttpPost]
         public ActionResult Create(CreateCustomer createCustomer)
         {
@@ -73,13 +82,6 @@ namespace Arch.Mvc.Controllers
             return View(_eventRepository.GetAllHistories());
         }
 
-        [HttpGet]
-        public ActionResult Create()
-        {
-            ViewBag.HasError = false;
-            ViewBag.Errors = new List<string>();
-
-            return View();
-        }
+        
     }
 }

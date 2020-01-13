@@ -15,10 +15,7 @@ using Microsoft.EntityFrameworkCore;
 namespace Arch.Cqrs.Handlers.Customer
 {
     public class CustomerQueryHandler :
-        //IQueryHandler<GetCustomersIndex, PagedResult<CustomerIndex>>,
-        IQueryHandler<GetCustomerDetails, CustomerDetails>,
         IQueryHandler<GetCustomerHistory, IReadOnlyList<object>>,
-        IQueryHandler<GetCustomersCsv, IEnumerable<CustomerIndex>>,
         IQueryHandler<GetCustomersPaging, Paging.PagedResult<CustomerIndex>>,
         IQueryHandler<GetCustomerForUpdate, UpdateCustomer>
     {

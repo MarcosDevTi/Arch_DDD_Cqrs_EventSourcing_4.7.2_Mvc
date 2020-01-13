@@ -2,45 +2,26 @@
 using Arch.Cqrs.Client.Query.Product.Queries;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Query;
-using AutoMapper;
 using AutoMapper.QueryableExtensions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace Arch.Cqrs.Handlers.Product
 {
     public class ProductQueryHandler :
-        IQueryHandler<GetProductsIndex, IReadOnlyList<ProductIndex>>,
-        IQueryHandler<GetProductDetails, ProductDetails>,
-        IQueryHandler<GetProductsDropDownList, IReadOnlyList<ProductDropDownItem>>
+        IQueryHandler<GetProductsTest, IReadOnlyList<ProductIndex>>
     {
-        private readonly ArchCoreContext _architectureContext;
-
-        public ProductQueryHandler(ArchCoreContext architectureContext)
+        private readonly ArchCoreContext _context;
+        public ProductQueryHandler(ArchCoreContext context)
         {
-            _architectureContext = architectureContext;
+            _context = context;
         }
-
-        public IReadOnlyList<ProductIndex> Handle(GetProductsIndex query)
+        public IReadOnlyList<ProductIndex> Handle(GetProductsTest query)
         {
-            return _architectureContext.Products
-                .ProjectTo<ProductIndex>().ToList();
-        }
-
-
-        public ProductDetails Handle(GetProductDetails query)
-        {
-            return Mapper.Map<ProductDetails>(
-                _architectureContext.Products.Find(query.Id));
-        }
-
-        public IReadOnlyList<ProductDropDownItem> Handle(GetProductsDropDownList query)
-        {
-            return _architectureContext.Products.Select(_ => new ProductDropDownItem
-            {
-                Id = _.Id,
-                Name = _.Name
-            }).ToList();
+            return _context.Products.Take(query.Take).ProjectTo<ProductIndex>().ToList();
         }
     }
 }
