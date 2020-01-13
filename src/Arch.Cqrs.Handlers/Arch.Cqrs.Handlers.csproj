@@ -139,8 +139,6 @@
     <Compile Include="OderItem\OderItemQueryHandler.cs" />
     <Compile Include="OderItem\OrderItemCommandHandler.cs" />
     <Compile Include="Order\OrderCommandHandler.cs" />
-    <Compile Include="Product\ProductCommandHandlerTest.cs" />
-    <Compile Include="Product\ProductQueryHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QueryHandler.cs" />
     <Compile Include="User\UserHandler.cs" />
@@ -174,6 +172,9 @@
       <Project>{C8EFFA6B-6A3A-4CDB-8884-5D3C4A63C6BD}</Project>
       <Name>Arch.Paging</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Product\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
