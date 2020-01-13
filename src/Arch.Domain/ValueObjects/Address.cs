@@ -1,5 +1,6 @@
 ﻿using System;
 using Arch.Domain.Core;
+using Arch.Domain.Models;
 
 namespace Arch.Domain.ValueObjects
 {
@@ -22,5 +23,6 @@ namespace Arch.Domain.ValueObjects
         public string Number { get; set; }
         public string City { get; set; }
         public string ZipCode { get; set; }
+        public Customer Customer { get; set; }
     }
 }

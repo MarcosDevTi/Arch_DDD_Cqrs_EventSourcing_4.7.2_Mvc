@@ -8,6 +8,7 @@ namespace Arch.Infra.Data.Maps
     {
         public CustomerMap()
         {
+            
             //Property(_ => _.BirthDate).HasColumnType("datetime2");
             //Property(_ => _.CreatedDate).HasColumnType("datetime2");
             
@@ -52,7 +53,7 @@ namespace Arch.Infra.Data.Maps
 
         public void Configure(EntityTypeBuilder<Customer> builder)
         {
-            throw new System.NotImplementedException();
+            builder.HasOne(_ => _.Address).WithOne(a => a.Customer).OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

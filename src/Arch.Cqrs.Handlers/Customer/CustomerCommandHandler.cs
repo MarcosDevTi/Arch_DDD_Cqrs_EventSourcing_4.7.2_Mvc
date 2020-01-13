@@ -71,7 +71,9 @@ namespace Arch.Cqrs.Handlers.Customer
             ValidateCommand(command);
             var lastEntity = Db().Include(_ => _.Address).AsNoTracking()
                .OrderBy(_ => _.CreatedDate).FirstOrDefault(_ => _.Id == command.Id);
-            var entity = GetById(command.Id);
+            var entity = Db().Include(_ => _.Address).FirstOrDefault(_ => _.Id == command.Id);
+            var address = _architectureContext.Addresses.Find(entity.Address.Id);
+            
             var action = _architectureContext.DeleteEntity(entity);
             Commit(entity, action, lastEntity);
         }
