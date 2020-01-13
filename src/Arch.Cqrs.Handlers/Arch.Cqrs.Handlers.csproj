@@ -128,7 +128,6 @@
     <Compile Include="Cart\CartCommandHandler.cs" />
     <Compile Include="CommandHandler.cs" />
     <Compile Include="Customer\CustomerCommandHandler.cs" />
-    <Compile Include="Customer\CustomerCommandHandlerDapper.cs" />
     <Compile Include="Customer\CustomerQueryHandler.cs" />
     <Compile Include="Customer\InsertsCommandHandler.cs" />
     <Compile Include="DbContextExtensions.cs" />

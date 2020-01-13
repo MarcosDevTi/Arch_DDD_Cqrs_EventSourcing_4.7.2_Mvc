@@ -10,16 +10,14 @@ namespace Arch.Cqrs.Client.Paging
         {
             var lambda = expression as LambdaExpression;
             MemberExpression memberExpression;
-            if (lambda.Body is UnaryExpression unaryExpression)
 
+            if (lambda.Body is UnaryExpression unaryExpression)
                 memberExpression = unaryExpression.Operand as MemberExpression;
-            else
-                memberExpression = lambda.Body as MemberExpression;
+            memberExpression = lambda.Body as MemberExpression;
 
             var propertyInfo = (PropertyInfo)memberExpression?.Member;
 
             return propertyInfo?.Name;
-
         }
     }
 }

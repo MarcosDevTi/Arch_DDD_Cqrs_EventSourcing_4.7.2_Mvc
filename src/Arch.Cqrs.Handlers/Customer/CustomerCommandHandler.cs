@@ -50,7 +50,6 @@ namespace Arch.Cqrs.Handlers.Customer
             ValidateCommand(command);
             command.AggregateId = command.Id;
 
-
             var customerTrackerd = _architectureContext.Customers.Include(_ => _.Address).FirstOrDefault(_ => _.Id == command.Id);
             var customer = Mapper.Map(command, customerTrackerd);
             customer.UpdateAddress(command.Street, command.Number, command.ZipCode);
@@ -79,7 +78,5 @@ namespace Arch.Cqrs.Handlers.Customer
         }
 
         private Domain.Models.Customer GetById(Guid id) => Db().Find(id);
-
-       
     }
 }

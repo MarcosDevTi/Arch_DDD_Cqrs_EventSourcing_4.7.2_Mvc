@@ -18,11 +18,12 @@ namespace Arch.Cqrs.Handlers.Order
             ArchCoreContext architectureContext,
             IDomainNotification notifications,
             IEventRepository eventRepository,
-
-            EventSourcingCoreContext eventSourcingContext) : base(architectureContext, notifications, eventRepository, eventSourcingContext)
+            EventSourcingCoreContext eventSourcingContext) 
+                : base(architectureContext, notifications, eventRepository, eventSourcingContext)
         {
             _architectureContext = architectureContext;
         }
+
         public void Handle(AddProductToCart command)
         {
             var product = _architectureContext.Products.Find(command.ProductId);

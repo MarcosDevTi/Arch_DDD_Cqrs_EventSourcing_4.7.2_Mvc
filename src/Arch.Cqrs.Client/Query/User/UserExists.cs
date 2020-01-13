@@ -4,10 +4,8 @@ namespace Arch.Cqrs.Client.Query.User
 {
     public class UserExists : IQuery<bool>
     {
-        public UserExists(string userName)
-        {
-            UserName = userName;
-        }
+        public UserExists(string userName) => UserName = userName;
+
         public string UserName { get; set; }
     }
 }

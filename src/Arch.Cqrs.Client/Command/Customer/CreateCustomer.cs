@@ -10,7 +10,6 @@ namespace Arch.Cqrs.Client.Command.Customer
 {
     public class CreateCustomer : CustomerCommand, ICustomMapper
     {
-        //ctor AutoMapper reflexion register profiles
         public CreateCustomer() { }
         public CreateCustomer(
             string firstName,

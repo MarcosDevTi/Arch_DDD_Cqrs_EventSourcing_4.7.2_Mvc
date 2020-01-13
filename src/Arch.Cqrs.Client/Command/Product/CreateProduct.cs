@@ -5,7 +5,7 @@ namespace Arch.Cqrs.Client.Command.Product
 {
     public class CreateProduct : ProductCommand
     {
-        public CreateProduct(){}
+        public CreateProduct() {}
 
         protected CreateProduct(string name, string description, decimal price)
         {

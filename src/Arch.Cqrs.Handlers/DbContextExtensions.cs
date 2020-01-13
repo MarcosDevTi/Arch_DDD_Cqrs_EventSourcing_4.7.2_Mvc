@@ -11,10 +11,8 @@ namespace Arch.Cqrs.Handlers
             return $"{entity.GetType().Name} Created";
         }
 
-        public static string UpdateEntity(this DbContext context, Entity entity)
-        {
-            return $"{entity.GetType().Name} Updated";
-        }
+        public static string UpdateEntity(this DbContext context, Entity entity) =>
+             $"{entity.GetType().Name} Updated";
 
         public static string DeleteEntity(this DbContext context, Entity entity)
         {

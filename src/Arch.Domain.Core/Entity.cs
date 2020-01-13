@@ -6,22 +6,20 @@ namespace Arch.Domain.Core
 {
     public abstract class Entity: ICloneable
     {
-        public Entity()
-        {
-            CreatedDate = DateTime.Now;
-        }
+        public Entity() => CreatedDate = DateTime.Now;
+
         public Guid Id { get; protected set; }
       
-        
-        public Guid GetId(Guid? id) => id ?? Guid.NewGuid();
         public DateTime CreatedDate { get; set; }
+
+        public Guid GetId(Guid? id) => id ?? Guid.NewGuid();
 
         public override bool Equals(object obj)
         {
             var compareTo = obj as Entity;
 
-            if (ReferenceEquals(this, compareTo)) return true;
-            if (ReferenceEquals(null, compareTo)) return false;
+                if (ReferenceEquals(this, compareTo)) return true;
+                if (ReferenceEquals(null, compareTo)) return false;
 
             return Id.Equals(compareTo.Id);
         }
@@ -37,24 +35,12 @@ namespace Arch.Domain.Core
             return a.Equals(b);
         }
 
-        public static bool operator !=(Entity a, Entity b)
-        {
-            return !(a == b);
-        }
+        public static bool operator !=(Entity a, Entity b) => !(a == b);
 
-        public override int GetHashCode()
-        {
-            return (GetType().GetHashCode() * 907) + Id.GetHashCode();
-        }
+        public override int GetHashCode() => (GetType().GetHashCode() * 907) + Id.GetHashCode();
 
-        public override string ToString()
-        {
-            return GetType().Name + " [Id=" + Id + "]";
-        }
+        public override string ToString() => GetType().Name + " [Id=" + Id + "]";
 
-        public object Clone()
-        {
-            return MemberwiseClone();
-        }
+        public object Clone() => MemberwiseClone();
     }
 }

@@ -25,8 +25,7 @@ namespace Arch.Cqrs.Client.Event.Customer
         public string BirthDate { get; set; }
 
       
-        public void Map(IMapperConfigurationExpression cfg)
-        {
+        public void Map(IMapperConfigurationExpression cfg) =>
             cfg.CreateMap<UpdateCustomer, CustomerUpdated>()
                 .ConstructUsing(x => new CustomerUpdated(
                     x.Id,
@@ -35,6 +34,5 @@ namespace Arch.Cqrs.Client.Event.Customer
                     x.Email,
                     x.BirthDate.ToString()))
                 .IgnoreAllPropertiesWithAnInaccessibleSetter();
-        }
     }
 }

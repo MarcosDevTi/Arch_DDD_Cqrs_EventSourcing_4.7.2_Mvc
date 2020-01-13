@@ -12,10 +12,8 @@ namespace Arch.Cqrs.Client.Query.Customer.Queries
 {
     public class GetCustomersPaging: IQuery<PagedResult<CustomerIndex>>
     {
-        public GetCustomersPaging(Arch.Paging.Paging paging)
-        {
-            Paging = paging;
-        }
+        public GetCustomersPaging(Arch.Paging.Paging paging) => Paging = paging;
+
         public Arch.Paging.Paging Paging { get; set; }
     }
 }

@@ -28,42 +28,26 @@ namespace Arch.Cqrs.Handlers.Customer
             _eventSourcingContext = eventSourcingContext;
         }
 
-        public CustomerDetails Handle(GetCustomerDetails query)
-        {
-            return Mapper.Map<CustomerDetails>(_architectureContext.Customers.Find(query.Id));
-        }
+        public CustomerDetails Handle(GetCustomerDetails query) =>
+            Mapper.Map<CustomerDetails>(_architectureContext.Customers.Find(query.Id));
 
-        public IReadOnlyList<object> Handle(GetCustomerHistory query)
-        {           
-            return GetEventSourcingEvent<Domain.Models.Customer>(query.AggregateId)
-                .ToList();
-        }
+        public IReadOnlyList<object> Handle(GetCustomerHistory query) => 
+            GetEventSourcingEvent<Domain.Models.Customer>(query.AggregateId).ToList();
 
-        protected IEnumerable<object> GetEventSourcingEvent<T>(Guid aggregateId)
-        {
-            var typeOriginal = _eventSourcingContext.EventEntities.Where(x =>
-               x.AggregateId == aggregateId)
-               .OrderBy(d => d.When)
-               .ToList().Select(_ => _.ReadToObject(_, typeof(T))
-           ).ToList();
+        protected IEnumerable<object> GetEventSourcingEvent<T>(Guid aggregateId) =>
+           _eventSourcingContext.EventEntities.Where(x =>
+                   x.AggregateId == aggregateId)
+                   .OrderBy(d => d.When)
+                   .ToList().Select(_ => _.ReadToObject(_, typeof(T))
+               ).ToList();
 
-            return typeOriginal;
-        }
+        public IEnumerable<CustomerIndex> Handle(GetCustomersCsv query) =>
+            _architectureContext.Customers.ProjectTo<CustomerIndex>().ToList();
 
-        public IEnumerable<CustomerIndex> Handle(GetCustomersCsv query)
-        {
-            var result = _architectureContext.Customers.ProjectTo<CustomerIndex>().ToList();
-            return result;
-        }
+        public Paging.PagedResult<CustomerIndex> Handle(GetCustomersPaging query) =>
+            _architectureContext.Customers.Include(_ => _.Address).GetPagedResult<Domain.Models.Customer, CustomerIndex>(query.Paging);
 
-        public Paging.PagedResult<CustomerIndex> Handle(GetCustomersPaging query)
-        {
-            return _architectureContext.Customers.Include(_ => _.Address).GetPagedResult<Domain.Models.Customer, CustomerIndex>(query.Paging);
-        }
-
-        public UpdateCustomer Handle(GetCustomerForUpdate query)
-        {
-            return Mapper.Map<UpdateCustomer>(_architectureContext.Customers.Include(_ => _.Address).FirstOrDefault(_ => _.Id == query.Id));
-        }
+        public UpdateCustomer Handle(GetCustomerForUpdate query) =>
+            Mapper.Map<UpdateCustomer>(_architectureContext.Customers.Include(_ => _.Address).FirstOrDefault(_ => _.Id == query.Id));
     }
 }

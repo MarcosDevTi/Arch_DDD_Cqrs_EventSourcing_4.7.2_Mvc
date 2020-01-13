@@ -39,8 +39,7 @@ namespace Arch.Cqrs.Handlers.Generic
                 throw new ArgumentException("The type must be serializable.", "source");
             }
 
-            // Don't serialize a null object, simply return the default for that object
-            if (Object.ReferenceEquals(source, null))
+            if (ReferenceEquals(source, null))
             {
                 return default(T);
             }
@@ -69,9 +68,7 @@ namespace Arch.Cqrs.Handlers.Generic
                 if (null != prop && prop.CanWrite)
                 {
                     if (prop.GetMethod.ReturnType == typeof(DateTime))
-                    {
                         command.Value = Convert.ToDateTime(command.Value);
-                    };
 
                     if (prop.GetMethod.ReturnType == typeof(int))
                     {
@@ -115,9 +112,7 @@ namespace Arch.Cqrs.Handlers.Generic
                 AddNotification(new DomainNotification("Commit", "We had a problem during saving your data."));
         }
 
-        private void AddNotification(DomainNotification notification)
-        {
+        private void AddNotification(DomainNotification notification) =>
             _notifications.Add(notification);
-        }
     }
 }

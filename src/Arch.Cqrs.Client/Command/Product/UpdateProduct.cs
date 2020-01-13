@@ -16,11 +16,9 @@ namespace Arch.Cqrs.Client.Command.Product
             Price = price;
         }
 
-        public void Map(IMapperConfigurationExpression cfg)
-        {
+        public void Map(IMapperConfigurationExpression cfg) =>
             cfg.CreateMap<UpdateProduct, Domain.Models.Product>()
                 .ConstructUsing(x => new Domain.Models.Product(x.Name, x.Description, x.Price, x.Id));
-        }
 
         public override bool IsValid() => true;
     }

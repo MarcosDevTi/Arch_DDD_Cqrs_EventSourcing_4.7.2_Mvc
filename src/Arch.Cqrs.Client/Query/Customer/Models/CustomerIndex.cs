@@ -6,7 +6,6 @@ using System;
 namespace Arch.Cqrs.Client.Query.Customer.Models
 {
     public class CustomerIndex : Infra.Shared.Cqrs.Commands.Command, ICustomMapper
-
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -31,13 +30,10 @@ namespace Arch.Cqrs.Client.Query.Customer.Models
 
     public class CustomerIndexMapGrid : GridFluent<CustomerIndex>
     {
-        public override void Configuration(GridFluent<CustomerIndex> builder)
-        {
-            builder
+        public override void Configuration(GridFluent<CustomerIndex> builder) =>builder
                 .AddGridMember(_ => _.Name, true, "Nom")
                 .AddGridMember(_ => _.BirthDate, true, "Date de Naissance")
                 .AddGridMember(_ => _.Email, true, "E-mail")
                 .AddGridMember(_ => _.Score, true, "Resultat");
-        }
     }
 }

@@ -7,24 +7,25 @@ namespace Arch.Domain.Models
 {
     public class Customer : Entity
     {
-        public Customer()
-        {
+        public Customer() {}
 
-        }
-        public Customer(
-            string firstName,
-            string lastName,
-            string email,
-            DateTime birthDate,
-            Guid? id = null)
+        public Customer(string firstName, string lastName, string email, DateTime birthDate, Guid? id = null)
         {
             Id = id == null ? Guid.NewGuid() : id.Value;
             FirstName = firstName;
             LastName = lastName;
             EmailAddress = email;
             BirthDate = birthDate;
-            //Orders = new List<Order>();
         }
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string EmailAddress { get; set; }
+        public int Score { get; set; }
+        public DateTime BirthDate { get; set; }
+        public Address Address { get; set; }
+        public Guid AddressId { get; set; }
+        public ICollection<Order> Orders { get; set; }
 
         public void OrdersAdd(Order order) => Orders.Add(order);
 
@@ -39,14 +40,5 @@ namespace Arch.Domain.Models
             Address.Number = number;
             Address.ZipCode = zipCode;
         }
-
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
-        public int Score { get; set; }
-        public DateTime BirthDate { get; set; }
-        public Address Address { get; set; }
-        public Guid AddressId { get; set; }
-        public ICollection<Order> Orders { get; set; }
     }
 }

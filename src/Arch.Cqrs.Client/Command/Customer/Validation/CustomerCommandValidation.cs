@@ -5,10 +5,6 @@ namespace Arch.Cqrs.Client.Command.Customer.Validation
 {
     public class CustomerCommandValidation<T> : AbstractValidator<T> where T : CustomerCommand
     {
-        //protected void ValidateId() =>
-        //    RuleFor(x => x.Id)
-        //        .NotEqual(Guid.Empty);
-
         protected void ValidateFirstName() =>
             RuleFor(x => x.FirstName)
                 .NotEmpty().WithMessage("Please easure you have entered the First Name")

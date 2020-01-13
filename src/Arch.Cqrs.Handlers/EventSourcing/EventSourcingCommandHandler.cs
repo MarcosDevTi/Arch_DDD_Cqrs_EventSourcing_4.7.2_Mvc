@@ -13,10 +13,10 @@ namespace Arch.Cqrs.Handlers.EventSourcing
         ICommandHandler<TruncateEventSourcing>
     {
         private readonly EventSourcingCoreContext _eventSourcingContext;
-        public EventSourcingCommandHandler(EventSourcingCoreContext eventSourcingContext)
-        {
+
+        public EventSourcingCommandHandler(EventSourcingCoreContext eventSourcingContext) =>
             _eventSourcingContext = eventSourcingContext;
-        }
+
         public void Handle(TruncateEventSourcing command)
         {
             _eventSourcingContext.EventEntities.RemoveRange(_eventSourcingContext.EventEntities);

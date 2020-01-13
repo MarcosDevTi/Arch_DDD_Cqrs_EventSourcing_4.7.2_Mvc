@@ -6,10 +6,7 @@ namespace Arch.Domain.ValueObjects
 {
     public class Address: Entity
     {
-        public Address()
-        {
-
-        }
+        public Address() { }
         public Address(string street, string number, string city, string zipCode, Guid? id = null)
         {
             Id = id ?? Guid.NewGuid();

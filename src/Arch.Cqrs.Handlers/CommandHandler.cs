@@ -37,25 +37,21 @@ namespace Arch.Cqrs.Handlers
         }
 
         protected DbSet<T> Db() => _architectureContext.Set<T>();
-        protected bool Any(Expression<Func<T, bool>> predicate)
-        {
-            var tt = _architectureContext.Set<T>();
-            return _architectureContext.Set<T>().Any(predicate);
-        }
+        protected bool Any(Expression<Func<T, bool>> predicate) =>
+            _architectureContext.Set<T>().Any(predicate);
 
         protected bool ExistsValidation(Expression<Func<T, bool>> predicate, string action, string message)
         {
-            var exists = false;
             if (Any(predicate))
             {
                 AddNotification(action, message);
                 return true;
             }
-            return exists;
+            return false;
         }
 
-        protected T GetLast(Guid id) => Db().AsNoTracking().OrderBy(_ => _.CreatedDate)
-                .FirstOrDefault(_ => _.Id == id);
+        protected T GetLast(Guid id) => 
+            Db().AsNoTracking().OrderBy(_ => _.CreatedDate).FirstOrDefault(_ => _.Id == id);
 
         protected void ValidateCommand(Command cmd)
         {
@@ -79,6 +75,7 @@ namespace Arch.Cqrs.Handlers
             else
                 AddNotification(new DomainNotification("Commit", "We had a problem during saving your data."));
         }
+
         public List<MemberInfo> GetAttributs(object obj)
         {
             var tipoGen = typeof(SourceFluent<>).MakeGenericType(obj.GetType());
@@ -110,8 +107,6 @@ namespace Arch.Cqrs.Handlers
                 {
                     _eventSourcingContext.SaveChanges();
                 }
-                   
-                
             }
             else
                 AddNotification(new DomainNotification("Commit", "We had a problem during saving your data."));
@@ -131,15 +126,11 @@ namespace Arch.Cqrs.Handlers
                 AddNotification(new DomainNotification("Commit", "We had a problem during saving your data."));
         }
 
-        protected void AddNotification(DomainNotification notification)
-        {
+        protected void AddNotification(DomainNotification notification) =>
             _notifications.Add(notification);
-        }
 
-        protected void AddNotification(string action, string message)
-        {
+        protected void AddNotification(string action, string message) =>
             this.AddNotification(new DomainNotification(action, message));
-        }
 
         public static object ReadToObject(string json, string typeP)
         {

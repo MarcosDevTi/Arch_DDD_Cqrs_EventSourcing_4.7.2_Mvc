@@ -8,12 +8,8 @@ namespace Arch.Cqrs.Client.Command.Customer
 {
     public class UpdateCustomer : CustomerCommand, ICustomMapper
     {
-        public UpdateCustomer()
-        {
+        public UpdateCustomer() {}
 
-        }
-        public Guid Id { get; set; }
-        public UpdateAddress UpdateAddress { get; set; }
         public UpdateCustomer(Guid id, string firstName, string lastName, string email, DateTime birthDate)
         {
             Id = id;
@@ -23,6 +19,9 @@ namespace Arch.Cqrs.Client.Command.Customer
             BirthDate = birthDate;
             AggregateId = id;
         }
+
+        public Guid Id { get; set; }
+        public UpdateAddress UpdateAddress { get; set; }
 
         public void Map(IMapperConfigurationExpression cfg)
         {

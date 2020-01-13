@@ -36,10 +36,9 @@ namespace Arch.Cqrs.Handlers.User
             return user;
         }
 
-        public bool Handle(UserExists query)
-        {
-            return _archDbContext.Users.Any(x => x.Username == query.UserName);
-        }
+        public bool Handle(UserExists query) =>
+            _archDbContext.Users.Any(x => x.Username == query.UserName);
+        
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {

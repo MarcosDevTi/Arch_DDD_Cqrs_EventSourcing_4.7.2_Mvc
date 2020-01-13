@@ -10,13 +10,9 @@ namespace Arch.Cqrs.Client.AutoMapper
 {
     public class AutoMapperConfig
     {
-
         private readonly IMapper _mapper;
 
-        public AutoMapperConfig(IMapper mapper)
-        {
-            _mapper = mapper;
-        }
+        public AutoMapperConfig(IMapper mapper) => _mapper = mapper;
 
         public static void Register<T>(Func<AssemblyName, bool> filter = null)
         {
@@ -39,55 +35,41 @@ namespace Arch.Cqrs.Client.AutoMapper
                 LoadIMapFromMappings(config, types);
             });
         }
-        private static void CustomMappings(IMapperConfigurationExpression config, Type[] types)
-        {
-            var maps = (from t in types
-                        from i in t.GetInterfaces()
-                        where typeof(ICustomMapper).IsAssignableFrom(t) &&
-                              !t.IsAbstract &&
-                              !t.IsInterface
-                        select (ICustomMapper)Activator.CreateInstance(t)).ToList();
 
-            foreach (var m in maps)
-            {
-                m.Map(config);
-            }
-            //maps.ForEach(m => m.Map(config));
-        }
+        private static void CustomMappings(IMapperConfigurationExpression config, Type[] types) =>
+             (from t in types
+              from i in t.GetInterfaces()
+              where typeof(ICustomMapper).IsAssignableFrom(t) &&
+                    !t.IsAbstract &&
+                    !t.IsInterface
+              select (ICustomMapper)Activator.CreateInstance(t)).ToList()
+            .ForEach(m => m.Map(config));
 
-        private static void LoadIMapToMappings(IMapperConfigurationExpression cfg, Type[] types)
-        {
-            var maps = (from t in types
-                        from i in t.GetInterfaces()
-                        where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapTo<>) &&
-                              !t.IsAbstract &&
-                              !t.IsInterface
-                        select new
-                        {
-                            Src = t,
-                            Dest = i.GetGenericArguments()[0]
-                        }).ToList();
+        private static void LoadIMapToMappings(IMapperConfigurationExpression cfg, Type[] types) =>
+             (from t in types
+              from i in t.GetInterfaces()
+              where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapTo<>) &&
+                    !t.IsAbstract &&
+                    !t.IsInterface
+              select new
+              {
+                  Src = t,
+                  Dest = i.GetGenericArguments()[0]
+              }).ToList()
+            .ForEach(m => cfg.CreateMap(m.Src, m.Dest));
 
+        private static void LoadIMapFromMappings(IMapperConfigurationExpression cfg, Type[] types) =>
+                (from t in types
+                 from i in t.GetInterfaces()
+                 where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
+                       !t.IsAbstract &&
+                       !t.IsInterface
+                 select new
+                 {
+                     Src = i.GetGenericArguments()[0],
+                     Dest = t
+                 }).ToList()
+            .ForEach(m => cfg.CreateMap(m.Src, m.Dest));
 
-            maps.ForEach(m => cfg.CreateMap(m.Src, m.Dest));
-        }
-
-        private static void LoadIMapFromMappings(IMapperConfigurationExpression cfg, Type[] types)
-        {
-            var maps = (from t in types
-
-                        from i in t.GetInterfaces()
-
-                        where i.IsGenericType && i.GetGenericTypeDefinition() == typeof(IMapFrom<>) &&
-                              !t.IsAbstract &&
-                              !t.IsInterface
-                        select new
-                        {
-                            Src = i.GetGenericArguments()[0],
-                            Dest = t
-                        }).ToList();
-
-            maps.ForEach(m => cfg.CreateMap(m.Src, m.Dest));
-        }
     }
 }

@@ -8,13 +8,11 @@ namespace Arch.Domain.Models
         {
             //builder.Ignore(_ => _.EmailAddress);
             builder
-                //.Ignore(_ => _.BirthDate)
                 .DisplayName(_ => _.FirstName, "Prénom")
                 .DisplayName(_ => _.LastName, "Nom")
                 .DisplayName(_ => _.EmailAddress, "Couriel")
                 .DisplayName(_ => _.BirthDate, "Date naissance");
-
-
+            //.Ignore(_ => _.BirthDate)
         }
     }
 }
