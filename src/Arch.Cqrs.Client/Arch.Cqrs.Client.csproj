@@ -75,6 +75,7 @@
     <Compile Include="Command\Customer\Validation\CustomerCommandValidation.cs" />
     <Compile Include="Command\Customer\Validation\DeleteCustomerValidation.cs" />
     <Compile Include="Command\Customer\Validation\UpdateCustomerValidation.cs" />
+    <Compile Include="Command\EventSourcing\TruncateEventSourcing.cs" />
     <Compile Include="Command\Generics\ListUpdate.cs" />
     <Compile Include="Command\OrderItem\CreateOrderItem.cs" />
     <Compile Include="Command\OrderItem\DeleteOrderItem.cs" />

@@ -54,6 +54,7 @@ namespace Arch.Cqrs.Handlers.Customer
         public void Handle(TrucateCustomers command)
         {
             _architectureContext.Customers.RemoveRange(_architectureContext.Customers);
+            _architectureContext.Addresses.RemoveRange(_architectureContext.Addresses);
             _architectureContext.SaveChanges();
         }
 

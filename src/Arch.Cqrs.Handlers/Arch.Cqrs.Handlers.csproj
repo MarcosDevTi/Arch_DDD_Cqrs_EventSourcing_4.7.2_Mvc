@@ -132,6 +132,7 @@
     <Compile Include="Customer\CustomerQueryHandler.cs" />
     <Compile Include="Customer\InsertsCommandHandler.cs" />
     <Compile Include="DbContextExtensions.cs" />
+    <Compile Include="EventSourcing\EventSourcingCommandHandler.cs" />
     <Compile Include="Generic\CsvQueryHandler.cs" />
     <Compile Include="Generic\ListCommandHandler.cs" />
     <Compile Include="Generic\Repository.cs" />

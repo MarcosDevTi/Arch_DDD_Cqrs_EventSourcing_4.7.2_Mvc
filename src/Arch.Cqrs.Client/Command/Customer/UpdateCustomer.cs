@@ -37,7 +37,6 @@ namespace Arch.Cqrs.Client.Command.Customer
                     c.BirthDate,
                     c.Id
                     );
-                    customer.UpdateAddress(c.Street, c.Number, c.ZipCode);
                     return customer;
                 })
                 .IgnoreAllPropertiesWithAnInaccessibleSetter();

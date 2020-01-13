@@ -1,4 +1,5 @@
 ﻿using Arch.Cqrs.Client.Command.Customer;
+using Arch.Cqrs.Client.Command.EventSourcing;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Event;
 using Arch.Infra.Shared.Cqrs;
@@ -59,6 +60,12 @@ namespace Arch.Mvc.Controllers
         public ActionResult TrucateCustomers()
         {
             _processor.Send(new TrucateCustomers());
+            return RedirectToAction("Index", "Customer", new { });
+        }
+
+        public ActionResult TrucateEventSourcing()
+        {
+            _processor.Send(new TruncateEventSourcing());
             return RedirectToAction("Index", "Customer", new { });
         }
 

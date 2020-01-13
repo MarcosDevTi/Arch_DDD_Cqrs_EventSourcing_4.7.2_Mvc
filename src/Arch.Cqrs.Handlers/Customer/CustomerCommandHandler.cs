@@ -53,6 +53,7 @@ namespace Arch.Cqrs.Handlers.Customer
 
             var customerTrackerd = _architectureContext.Customers.Include(_ => _.Address).FirstOrDefault(_ => _.Id == command.Id);
             var customer = Mapper.Map(command, customerTrackerd);
+            customer.UpdateAddress(command.Street, command.Number, command.ZipCode);
 
             ExistsValidation(x => 
                 x.EmailAddress == customer.EmailAddress && x.Id != command.Id, command.Action, "The customer e-mail has already been taken.");
