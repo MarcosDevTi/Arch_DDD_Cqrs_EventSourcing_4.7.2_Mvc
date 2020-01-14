@@ -98,6 +98,9 @@
     <Compile Include="Event\Product\ProductCreated.cs" />
     <Compile Include="Event\Product\ProductDeleted.cs" />
     <Compile Include="Event\Product\ProductUpdated.cs" />
+    <Compile Include="ProductOnlyCqrs\CreateProduct.cs" />
+    <Compile Include="ProductOnlyCqrs\GetProductsList.cs" />
+    <Compile Include="ProductOnlyCqrs\ProductItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Query\Customer\Models\CustomerDetails.cs" />
     <Compile Include="Query\Customer\Models\CustomerHistory.cs" />
