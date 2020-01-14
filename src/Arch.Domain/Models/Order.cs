@@ -1,12 +1,12 @@
-﻿using System.Collections.Generic;
+﻿using Arch.Domain.Core;
+using System.Collections.Generic;
 using System.Linq;
-using Arch.Domain.Core;
 
 namespace Arch.Domain.Models
 {
     public class Order : Entity
     {
-        public Order() {}
+        public Order() { }
 
         public Order(Customer customer)
         {

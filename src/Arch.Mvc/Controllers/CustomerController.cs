@@ -1,17 +1,11 @@
-﻿using Arch.Cqrs.Client.Command.Customer;
-using Arch.Cqrs.Client.Command.Customer.Generics;
-using Arch.Cqrs.Client.Paging;
-using Arch.Cqrs.Client.Query.Customer.Queries;
+﻿using Arch.CqrsClient.Command.Customer;
+using Arch.CqrsClient.Query.Customer.Queries;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Event;
 using Arch.Infra.Shared.Cqrs;
-using Arch.Paging;
-using AutoMapper;
-using Bogus;
+using Arch.Infra.Shared.Pagination;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Arch.Mvc.Controllers
@@ -28,7 +22,7 @@ namespace Arch.Mvc.Controllers
             _notifications = notifications;
             _eventRepository = eventRepository;
         }
-        public ActionResult Index(Paging.Paging paging)
+        public ActionResult Index(Paging paging)
         {
             var pagedResult = _processor.Get(new GetCustomersPaging(paging));
             return View(pagedResult);
@@ -46,7 +40,7 @@ namespace Arch.Mvc.Controllers
         [HttpPost]
         public ActionResult Create(CreateCustomer createCustomer)
         {
-            
+
             _processor.Send(createCustomer);
             return ViewWithValidation(createCustomer);
         }
@@ -66,7 +60,7 @@ namespace Arch.Mvc.Controllers
 
         public ActionResult Delete(Guid id)
         {
-            _processor.Send(new DeleteCustomer {Id = id });
+            _processor.Send(new DeleteCustomer { Id = id });
             return RedirectToAction("Index");
         }
 
@@ -81,7 +75,5 @@ namespace Arch.Mvc.Controllers
         {
             return View(_eventRepository.GetAllHistories());
         }
-
-        
     }
 }

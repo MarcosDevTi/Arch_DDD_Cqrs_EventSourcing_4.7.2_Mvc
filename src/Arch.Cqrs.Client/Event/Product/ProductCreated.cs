@@ -1,9 +1,9 @@
 ﻿using System;
-using Arch.Cqrs.Client.AutoMapper;
-using Arch.Cqrs.Client.Command.Product;
+using Arch.CqrsClient.AutoMapper;
+using Arch.CqrsClient.Command.Product;
 using AutoMapper;
 
-namespace Arch.Cqrs.Client.Event.Product
+namespace Arch.CqrsClient.Event.Product
 {
     public class ProductCreated : Infra.Shared.Cqrs.Event.Event, ICustomMapper
     {

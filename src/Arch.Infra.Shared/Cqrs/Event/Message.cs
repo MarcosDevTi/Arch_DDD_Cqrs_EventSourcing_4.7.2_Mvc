@@ -1,9 +1,9 @@
-﻿using System;
-using Arch.Infra.Shared.Cqrs.Commands;
+﻿using Arch.Infra.Shared.Cqrs.Commands;
+using System;
 
 namespace Arch.Infra.Shared.Cqrs.Event
 {
-    public class Message: ICommand
+    public class Message : ICommand
     {
         public Message()
         {

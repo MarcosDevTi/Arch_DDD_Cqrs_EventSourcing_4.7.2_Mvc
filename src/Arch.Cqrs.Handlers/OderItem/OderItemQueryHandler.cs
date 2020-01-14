@@ -1,16 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Arch.Cqrs.Client.Query.OrderItem.Models;
-using Arch.Cqrs.Client.Query.OrderItem.Queries;
+﻿using Arch.CqrsClient.Query.OrderItem.Models;
+using Arch.CqrsClient.Query.OrderItem.Queries;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Query;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Arch.Cqrs.Handlers.OderItem
+namespace Arch.CqrsHandlers.OderItem
 {
     public class OderItemQueryHandler :
         IQueryHandler<GetOrderItensIndex, IReadOnlyList<OrderItemIndex>>,
-        IQueryHandler<GetCart, Client.Query.OrderItem.Models.Cart>
+        IQueryHandler<GetCart, Cart>
     {
         private readonly ArchCoreContext _architectureContext;
 
@@ -25,7 +25,7 @@ namespace Arch.Cqrs.Handlers.OderItem
                     .Include(x => x.Customer)
                     .Include(x => x.OrderItems)
                               from o in oi.OrderItems
-                              //where oi.Customer.Id == _user.UserId()
+                                  //where oi.Customer.Id == _user.UserId()
                               select o;
 
             return ordersItens.Include(x => x.Product)
@@ -37,13 +37,13 @@ namespace Arch.Cqrs.Handlers.OderItem
                 }).ToList();
         }
 
-        public Client.Query.OrderItem.Models.Cart Handle(GetCart query)
+        public Cart Handle(GetCart query)
         {
             var ordersItens = from oi in _architectureContext.Orders
                     .Include(x => x.Customer)
                     .Include(x => x.OrderItems)
                               from o in oi.OrderItems
-                              //where oi.Customer.Id == _user.UserId()
+                                  //where oi.Customer.Id == _user.UserId()
                               select o;
 
             var result = ordersItens.Include(x => x.Product)
@@ -54,7 +54,7 @@ namespace Arch.Cqrs.Handlers.OderItem
                     Qtd = x.Qtd
                 }).ToList();
 
-            return new Client.Query.OrderItem.Models.Cart
+            return new Cart
             {
                 OrderItens = result,
                 TotalPrice = ordersItens.Sum(x => x.Product.Price * x.Qtd)

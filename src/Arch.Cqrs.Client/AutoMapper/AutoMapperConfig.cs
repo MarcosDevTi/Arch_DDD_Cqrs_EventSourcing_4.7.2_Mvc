@@ -1,12 +1,11 @@
 ﻿
+using AutoMapper;
 using System;
 using System.Linq;
 using System.Reflection;
-using System.Runtime.InteropServices;
-using AutoMapper;
 
 
-namespace Arch.Cqrs.Client.AutoMapper
+namespace Arch.CqrsClient.AutoMapper
 {
     public class AutoMapperConfig
     {

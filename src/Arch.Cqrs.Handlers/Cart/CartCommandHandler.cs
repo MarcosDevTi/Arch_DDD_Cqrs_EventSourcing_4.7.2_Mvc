@@ -1,7 +1,7 @@
-﻿using System.Linq;
-using Arch.Cqrs.Client.Command.Cart;
+﻿using Arch.CqrsClient.Command.Cart;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Commands;
+using System.Linq;
 
 namespace Arch.Cqrs.Handlers.Cart
 {

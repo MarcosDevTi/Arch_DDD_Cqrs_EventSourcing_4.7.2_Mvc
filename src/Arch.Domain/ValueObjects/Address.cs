@@ -1,10 +1,10 @@
-﻿using System;
-using Arch.Domain.Core;
+﻿using Arch.Domain.Core;
 using Arch.Domain.Models;
+using System;
 
 namespace Arch.Domain.ValueObjects
 {
-    public class Address: Entity
+    public class Address : Entity
     {
         public Address() { }
         public Address(string street, string number, string city, string zipCode, Guid? id = null)

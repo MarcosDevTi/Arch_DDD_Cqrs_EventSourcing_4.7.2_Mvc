@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Arch.Cqrs.Client.Event.Order
+namespace Arch.CqrsClient.Event.Order
 {
     public class ProductAddedToCart : Infra.Shared.Cqrs.Event.Event
     {

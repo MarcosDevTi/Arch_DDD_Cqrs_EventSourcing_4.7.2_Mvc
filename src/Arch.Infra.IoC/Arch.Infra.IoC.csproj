@@ -49,20 +49,17 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="app.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Arch.Cqrs.Client\Arch.Cqrs.Client.csproj">
+    <ProjectReference Include="..\Arch.Cqrs.Client\Arch.CqrsClient.csproj">
       <Project>{db4f8149-5e0e-4817-a401-80d56a730761}</Project>
-      <Name>Arch.Cqrs.Client</Name>
+      <Name>Arch.CqrsClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Arch.Cqrs.Handlers\Arch.Cqrs.Handlers.csproj">
+    <ProjectReference Include="..\Arch.Cqrs.Handlers\Arch.CqrsHandlers.csproj">
       <Project>{4c986b74-c69f-4604-9d84-d39a6c87e746}</Project>
-      <Name>Arch.Cqrs.Handlers</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Arch.Domain.Core\Arch.Domain.Core.csproj">
-      <Project>{955836ab-e391-48b7-a7db-a45cd8ddacf7}</Project>
-      <Name>Arch.Domain.Core</Name>
+      <Name>Arch.CqrsHandlers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Arch.Domain\Arch.Domain.csproj">
       <Project>{da5ad5c5-ddfb-44b1-abfc-ad6c7db05455}</Project>

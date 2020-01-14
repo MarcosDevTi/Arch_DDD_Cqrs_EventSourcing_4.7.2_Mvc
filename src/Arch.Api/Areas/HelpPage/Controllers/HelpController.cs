@@ -1,14 +1,11 @@
+using Arch.Api.Areas.HelpPage.ModelDescriptions;
+using Arch.Api.Areas.HelpPage.Models;
 using System;
 using System.Web.Http;
 using System.Web.Mvc;
-using Arch.Api.Areas.HelpPage.ModelDescriptions;
-using Arch.Api.Areas.HelpPage.Models;
 
 namespace Arch.Api.Areas.HelpPage.Controllers
 {
-    /// <summary>
-    /// The controller that will handle requests for the help page.
-    /// </summary>
     public class HelpController : Controller
     {
         private const string ErrorViewName = "Error";

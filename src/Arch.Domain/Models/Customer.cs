@@ -7,7 +7,7 @@ namespace Arch.Domain.Models
 {
     public class Customer : Entity
     {
-        public Customer() {}
+        public Customer() { }
 
         public Customer(string firstName, string lastName, string email, DateTime birthDate, Guid? id = null)
         {

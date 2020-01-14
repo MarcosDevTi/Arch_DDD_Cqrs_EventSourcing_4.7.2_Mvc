@@ -1,6 +1,6 @@
-﻿using System;
+﻿using Arch.Domain.Core;
+using System;
 using System.Collections.Generic;
-using Arch.Domain.Core;
 
 namespace Arch.Domain.Event
 {

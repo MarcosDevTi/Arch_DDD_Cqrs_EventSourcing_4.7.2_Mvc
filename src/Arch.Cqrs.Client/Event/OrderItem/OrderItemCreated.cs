@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Arch.Cqrs.Client.Event.OrderItem
+namespace Arch.CqrsClient.Event.OrderItem
 {
     public class OrderItemCreated : Infra.Shared.Cqrs.Event.Event
     {
@@ -13,6 +13,6 @@ namespace Arch.Cqrs.Client.Event.OrderItem
         public Guid Id { get; private set; }
         public Guid ProductId { get; private set; }
         public int Qtd { get; private set; }
-        
+
     }
 }

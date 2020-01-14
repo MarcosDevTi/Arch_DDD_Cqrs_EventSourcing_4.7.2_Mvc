@@ -357,13 +357,9 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Arch.Cqrs.Client\Arch.Cqrs.Client.csproj">
+    <ProjectReference Include="..\Arch.Cqrs.Client\Arch.CqrsClient.csproj">
       <Project>{DB4F8149-5E0E-4817-A401-80D56A730761}</Project>
-      <Name>Arch.Cqrs.Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Arch.Domain.Core\Arch.Domain.Core.csproj">
-      <Project>{955836ab-e391-48b7-a7db-a45cd8ddacf7}</Project>
-      <Name>Arch.Domain.Core</Name>
+      <Name>Arch.CqrsClient</Name>
     </ProjectReference>
     <ProjectReference Include="..\Arch.Domain\Arch.Domain.csproj">
       <Project>{DA5AD5C5-DDFB-44B1-ABFC-AD6C7DB05455}</Project>
@@ -380,10 +376,6 @@
     <ProjectReference Include="..\Arch.Infra.Shared\Arch.Infra.Shared.csproj">
       <Project>{2f09da02-f611-43cc-ac7b-9370e7e445a0}</Project>
       <Name>Arch.Infra.Shared</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Arch.Paging\Arch.Paging.csproj">
-      <Project>{C8EFFA6B-6A3A-4CDB-8884-5D3C4A63C6BD}</Project>
-      <Name>Arch.Paging</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

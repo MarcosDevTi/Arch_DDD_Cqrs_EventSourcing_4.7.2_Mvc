@@ -35,7 +35,7 @@ namespace Arch.Infra.Data.EventSourcing
                 .FirstOrDefault(_ => tipoGen.IsAssignableFrom(_));
 
             dynamic tipo = null;
-            if(map != null)
+            if (map != null)
             {
                 tipo = (dynamic)Activator.CreateInstance(map);
                 tipo.Configuration(tipo);

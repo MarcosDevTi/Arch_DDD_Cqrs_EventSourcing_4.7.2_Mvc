@@ -1,9 +1,9 @@
-﻿using System;
-using Arch.Cqrs.Client.AutoMapper;
-using Arch.Cqrs.Client.Command.Customer;
+﻿using Arch.CqrsClient.AutoMapper;
+using Arch.CqrsClient.Command.Customer;
 using AutoMapper;
+using System;
 
-namespace Arch.Cqrs.Client.Event.Customer
+namespace Arch.CqrsClient.Event.Customer
 {
     public class CustomerUpdated : Infra.Shared.Cqrs.Event.Event, ICustomMapper
     {
@@ -24,7 +24,7 @@ namespace Arch.Cqrs.Client.Event.Customer
         public string Email { get; set; }
         public string BirthDate { get; set; }
 
-      
+
         public void Map(IMapperConfigurationExpression cfg) =>
             cfg.CreateMap<UpdateCustomer, CustomerUpdated>()
                 .ConstructUsing(x => new CustomerUpdated(

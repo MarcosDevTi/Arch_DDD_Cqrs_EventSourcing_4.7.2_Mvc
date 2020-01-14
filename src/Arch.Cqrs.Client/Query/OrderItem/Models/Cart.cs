@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace Arch.Cqrs.Client.Query.OrderItem.Models
+namespace Arch.CqrsClient.Query.OrderItem.Models
 {
     public class Cart
     {

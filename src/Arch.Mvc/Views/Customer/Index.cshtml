@@ -1,5 +1,7 @@
 ﻿@using Arch.Mvc.Helpers
-@model  Arch.Paging.PagedResult<Arch.Cqrs.Client.Query.Customer.Models.CustomerIndex>
+@using Arch.CqrsClient.Query.Customer.Models
+@using Arch.Infra.Shared.Pagination
+@model  PagedResult<CustomerIndex>
 
 @{
     ViewBag.Title = "Index";

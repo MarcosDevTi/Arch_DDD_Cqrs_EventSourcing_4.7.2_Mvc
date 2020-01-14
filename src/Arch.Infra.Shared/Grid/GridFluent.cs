@@ -21,11 +21,6 @@ namespace Arch.Infra.Shared.Grid
             return this;
         }
 
-        //public GridFluent<T> AddMemberInGrid<TProperty>(Expression<Func<T, TProperty>> property)
-        //{
-        //    AddMember(property.GetMember(), displayName);
-        //    return this;
-        //}
         public abstract void Configuration(GridFluent<T> builder);
     }
 }

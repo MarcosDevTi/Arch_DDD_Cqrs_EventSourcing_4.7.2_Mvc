@@ -1,22 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Arch.Cqrs.Client.Command.Customer;
-using Arch.Cqrs.Client.Paging;
-using Arch.Cqrs.Client.Query.Customer.Models;
-using Arch.Cqrs.Client.Query.Customer.Queries;
+﻿using Arch.CqrsClient.Command.Customer;
+using Arch.CqrsClient.Query.Customer.Models;
+using Arch.CqrsClient.Query.Customer.Queries;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Query;
+using Arch.Infra.Shared.Pagination;
 using AutoMapper;
 using AutoMapper.QueryableExtensions;
-using Arch.Paging;
 using Microsoft.EntityFrameworkCore;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
-namespace Arch.Cqrs.Handlers.Customer
+namespace Arch.CqrsHandlers.Customer
 {
     public class CustomerQueryHandler :
         IQueryHandler<GetCustomerHistory, IReadOnlyList<object>>,
-        IQueryHandler<GetCustomersPaging, Paging.PagedResult<CustomerIndex>>,
+        IQueryHandler<GetCustomersPaging, PagedResult<CustomerIndex>>,
         IQueryHandler<GetCustomerForUpdate, UpdateCustomer>
     {
         private readonly ArchCoreContext _architectureContext;
@@ -31,7 +30,7 @@ namespace Arch.Cqrs.Handlers.Customer
         public CustomerDetails Handle(GetCustomerDetails query) =>
             Mapper.Map<CustomerDetails>(_architectureContext.Customers.Find(query.Id));
 
-        public IReadOnlyList<object> Handle(GetCustomerHistory query) => 
+        public IReadOnlyList<object> Handle(GetCustomerHistory query) =>
             GetEventSourcingEvent<Domain.Models.Customer>(query.AggregateId).ToList();
 
         protected IEnumerable<object> GetEventSourcingEvent<T>(Guid aggregateId) =>
@@ -44,7 +43,7 @@ namespace Arch.Cqrs.Handlers.Customer
         public IEnumerable<CustomerIndex> Handle(GetCustomersCsv query) =>
             _architectureContext.Customers.ProjectTo<CustomerIndex>().ToList();
 
-        public Paging.PagedResult<CustomerIndex> Handle(GetCustomersPaging query) =>
+        public PagedResult<CustomerIndex> Handle(GetCustomersPaging query) =>
             _architectureContext.Customers.Include(_ => _.Address).GetPagedResult<Domain.Models.Customer, CustomerIndex>(query.Paging);
 
         public UpdateCustomer Handle(GetCustomerForUpdate query) =>

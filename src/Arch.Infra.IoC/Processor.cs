@@ -1,16 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Arch.Infra.Shared.Cqrs;
+﻿using Arch.Infra.Shared.Cqrs;
 using Arch.Infra.Shared.Cqrs.Commands;
 using Arch.Infra.Shared.Cqrs.Query;
 using SimpleInjector;
+using System;
 
 namespace Arch.Infra.IoC
 {
-    public class Processor: IProcessor
+    public class Processor : IProcessor
     {
         private readonly Container _container;
 

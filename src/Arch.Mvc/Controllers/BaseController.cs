@@ -1,14 +1,11 @@
 ﻿using Arch.Domain.Core.DomainNotifications;
-using Arch.Infra.Shared.Cqrs.Commands;
-using System;
-using System.Collections.Generic;
+using Arch.Infra.Shared.Cqrs.Contracts;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Arch.Mvc.Controllers
 {
-    public class BaseController: Controller
+    public class BaseController : Controller
     {
         private readonly IDomainNotification _notifications;
 
@@ -22,7 +19,7 @@ namespace Arch.Mvc.Controllers
             return (!_notifications.HasNotifications());
         }
 
-        public ActionResult ViewWithValidation(Command command)
+        public ActionResult ViewWithValidation(CommandAction command)
         {
             ViewBag.Errors = _notifications.GetNotifications().Select(_ => _.Value).ToList();
             ViewBag.HasError = _notifications.HasNotifications();
@@ -31,7 +28,7 @@ namespace Arch.Mvc.Controllers
             return RedirectToAction("Index");
         }
 
-       
+
 
     }
 }

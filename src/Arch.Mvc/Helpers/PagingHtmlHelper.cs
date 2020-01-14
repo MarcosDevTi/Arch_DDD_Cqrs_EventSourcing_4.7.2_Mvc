@@ -1,19 +1,18 @@
-﻿using Arch.Cqrs.Client.Paging;
-using Arch.Paging;
+﻿using Arch.Infra.Shared.Pagination;
 using System;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.Linq;
 using System.Text;
 using System.Web;
-using System.Web.Helpers;
 using System.Web.Mvc;
+using SortDirection = Arch.Infra.Shared.Pagination.SortDirection;
 
 namespace Arch.Mvc.Helpers
 {
     public static class PagingHtmlHelper
     {
-        public static MvcHtmlString GetSortingUrl<T>(this System.Web.Mvc.HtmlHelper html, Arch.Paging.PagedResult<T> pagedResult, string propertyName, string url)
+        public static MvcHtmlString GetSortingUrl<T>(this HtmlHelper html, PagedResult<T> pagedResult, string propertyName, string url)
         {
             string extendedUrl = url
                 .SetParameter("sortColumn", propertyName)
@@ -23,7 +22,7 @@ namespace Arch.Mvc.Helpers
             return MvcHtmlString.Create(extendedUrl);
         }
 
-        public static MvcHtmlString GetPager<T>(this System.Web.Mvc.HtmlHelper html, Arch.Paging.PagedResult<T> pagedResult, string url)
+        public static MvcHtmlString GetPager<T>(this HtmlHelper html, PagedResult<T> pagedResult, string url)
         {
             if (pagedResult == null || pagedResult.TotalNumberOfItems <= pagedResult.Paging.PageSize)
             {
@@ -75,14 +74,6 @@ namespace Arch.Mvc.Helpers
             return MvcHtmlString.Create(listBuilder.ToString());
         }
 
-        /// <summary>
-        /// Replaces a parameter within an URL.
-        /// If <c>null</c> is supplied as new value, the parameter gets removed.
-        /// </summary>
-        /// <param name="url">The URL.</param>
-        /// <param name="param">The parameter.</param>
-        /// <param name="value">The value of the parameter.</param>
-        /// <returns>The new URL.</returns>
         private static string SetParameter(this string url, string param, string value)
         {
             int questionMarkIndex = url.IndexOf('?');
@@ -124,15 +115,15 @@ namespace Arch.Mvc.Helpers
             return result.ToString();
         }
 
-        private static Paging.SortDirection GetSortDirection(Paging.Paging paging, string propertyName)
+        private static SortDirection GetSortDirection(Paging paging, string propertyName)
         {
-            Paging.SortDirection sortDirection = Paging.SortDirection.Ascending;
+            SortDirection sortDirection = SortDirection.Ascending;
 
             if (paging != null
                 && propertyName.Equals(paging.SortColumn)
-                && paging.SortDirection == Paging.SortDirection.Ascending)
+                && paging.SortDirection == SortDirection.Ascending)
             {
-                sortDirection = Paging.SortDirection.Descending;
+                sortDirection = SortDirection.Descending;
             }
 
             return sortDirection;

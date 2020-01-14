@@ -1,6 +1,6 @@
-﻿using Arch.Cqrs.Client.AutoMapper;
-using Arch.Cqrs.Client.Command.Customer;
-using Arch.Cqrs.Handlers.Customer;
+﻿using Arch.CqrsClient.AutoMapper;
+using Arch.CqrsClient.Command.Customer;
+using Arch.CqrsHandlers.Customer;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Event;
 using Arch.Infra.Data;

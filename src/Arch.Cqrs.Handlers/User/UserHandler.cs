@@ -1,12 +1,12 @@
-﻿using Arch.Cqrs.Client.Command.User;
-using Arch.Cqrs.Client.Query.User;
+﻿using Arch.CqrsClient.Command.User;
+using Arch.CqrsClient.Query.User;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Commands;
 using Arch.Infra.Shared.Cqrs.Query;
 using System.Linq;
 using System.Text;
 
-namespace Arch.Cqrs.Handlers.User
+namespace Arch.CqrsHandlers.User
 {
     public class UserHandler :
         ICommandHandler<RegisterUser>,
@@ -38,7 +38,7 @@ namespace Arch.Cqrs.Handlers.User
 
         public bool Handle(UserExists query) =>
             _archDbContext.Users.Any(x => x.Username == query.UserName);
-        
+
 
         private bool VerifyPasswordHash(string password, byte[] passwordHash, byte[] passwordSalt)
         {

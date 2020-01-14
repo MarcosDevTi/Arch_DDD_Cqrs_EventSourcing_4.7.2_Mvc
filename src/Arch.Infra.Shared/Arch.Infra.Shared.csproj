@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
       <HintPath>..\..\packages\FluentValidation.8.6.1\lib\net45\FluentValidation.dll</HintPath>
     </Reference>
@@ -46,6 +49,10 @@
     </Reference>
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,13 +61,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cqrs\Commands\Command.cs" />
-    <Compile Include="Cqrs\Commands\ICommand.cs" />
-    <Compile Include="Cqrs\Commands\ICommandHandler.cs" />
+    <Compile Include="Cqrs\Contracts\CommandAction.cs" />
+    <Compile Include="Cqrs\Contracts\ICommand.cs" />
+    <Compile Include="Cqrs\Contracts\ICommandHandler.cs" />
     <Compile Include="Cqrs\Event\Event.cs" />
     <Compile Include="Cqrs\Event\ExtensionsEventSourcing.cs" />
-    <Compile Include="Cqrs\Event\HistoryBase.cs" />
-    <Compile Include="Cqrs\Event\IEventSourcing.cs" />
     <Compile Include="Cqrs\Event\Message.cs" />
     <Compile Include="Cqrs\Extentions\CqrsExtentions.cs" />
     <Compile Include="Cqrs\IProcessor.cs" />
@@ -71,11 +76,15 @@
     <Compile Include="EventSourcing\EventTest.cs" />
     <Compile Include="EventSourcing\SourceFluent.cs" />
     <Compile Include="EventSourcing\SourceTypeBuilder.cs" />
-    <Compile Include="EventSourcing\test.cs" />
     <Compile Include="Grid\GridFluent.cs" />
     <Compile Include="Grid\GridOutils.cs" />
     <Compile Include="Grid\GridTypeBuilder.cs" />
     <Compile Include="Grid\HeadGridProp.cs" />
+    <Compile Include="Pagination\PagedResult.cs" />
+    <Compile Include="Pagination\Paging.cs" />
+    <Compile Include="Pagination\PagingExtensions.cs" />
+    <Compile Include="Pagination\PropertyResolver.cs" />
+    <Compile Include="Pagination\SortDirection.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

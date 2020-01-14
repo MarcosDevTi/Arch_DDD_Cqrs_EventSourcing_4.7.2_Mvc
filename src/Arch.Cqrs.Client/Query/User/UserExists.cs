@@ -1,6 +1,6 @@
 ﻿using Arch.Infra.Shared.Cqrs.Query;
 
-namespace Arch.Cqrs.Client.Query.User
+namespace Arch.CqrsClient.Query.User
 {
     public class UserExists : IQuery<bool>
     {

@@ -5,7 +5,7 @@ using System.Reflection;
 
 namespace Arch.Infra.Shared.EventSourcing
 {
-    public abstract class SourceFluent<T>: SourceTypeBuilder<T> where T: class
+    public abstract class SourceFluent<T> : SourceTypeBuilder<T> where T : class
     {
         public List<MemberInfo> Members;
         public List<MemberInfo> MembersNotEditables;
@@ -13,7 +13,7 @@ namespace Arch.Infra.Shared.EventSourcing
         public void AddMember(MemberInfo member)
         {
             if (Members == null) Members = new List<MemberInfo>();
-                Members.Add(member);
+            Members.Add(member);
         }
 
         private void AddMember(MemberInfo member, string displayName)

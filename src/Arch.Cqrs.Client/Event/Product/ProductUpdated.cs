@@ -1,8 +1,8 @@
 ﻿using System;
-using Arch.Cqrs.Client.AutoMapper;
-using Arch.Cqrs.Client.Command.Product;
+using Arch.CqrsClient.AutoMapper;
+using Arch.CqrsClient.Command.Product;
 
-namespace Arch.Cqrs.Client.Event.Product
+namespace Arch.CqrsClient.Event.Product
 {
     public class ProductUpdated : Infra.Shared.Cqrs.Event.Event, IMapFrom<UpdateProduct>
     {

@@ -5,7 +5,7 @@ namespace Arch.Domain.Models
 {
     public class Product : Entity
     {
-        public Product() {}
+        public Product() { }
 
         public Product(string name, string description, decimal price, Guid? id = null)
         {

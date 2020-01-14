@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Arch.Cqrs.Client.Event.Product
+namespace Arch.CqrsClient.Event.Product
 {
     public class ProductDeleted : Infra.Shared.Cqrs.Event.Event
     {

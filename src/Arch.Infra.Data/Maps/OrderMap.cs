@@ -8,8 +8,8 @@ namespace Arch.Infra.Data.Maps
     {
         public OrderMap()
         {
-           // Property(_ => _.CreatedDate).HasColumnType("datetime2");
-            
+            // Property(_ => _.CreatedDate).HasColumnType("datetime2");
+
         }
 
         public void Configure(EntityTypeBuilder<Order> builder)

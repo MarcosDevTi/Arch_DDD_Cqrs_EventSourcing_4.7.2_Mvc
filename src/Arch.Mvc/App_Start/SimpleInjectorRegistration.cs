@@ -1,5 +1,4 @@
-﻿
-using Arch.Infra.IoC;
+﻿using Arch.Infra.IoC;
 using SimpleInjector;
 using SimpleInjector.Integration.Web;
 using SimpleInjector.Integration.Web.Mvc;
@@ -35,17 +34,14 @@ namespace Arch.Mvc
 
             MiniProfiler.Configure(new MiniProfilerOptions()
             {
-                //Storage = new SqlServerStorage(miniprofilerDb),
-
-                // Sets up the route to use for MiniProfiler resources:
                 RouteBasePath = "~/miniprofiler",
                 PopupRenderPosition = RenderPosition.BottomLeft
             })
             .AddViewProfiling()
             .AddEntityFramework();
-           
+
         }
 
-      
+
     }
 }

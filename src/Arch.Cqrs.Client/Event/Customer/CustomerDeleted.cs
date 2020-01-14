@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Arch.Cqrs.Client.Event.Customer
+namespace Arch.CqrsClient.Event.Customer
 {
     public class CustomerDeleted : Infra.Shared.Cqrs.Event.Event
     {

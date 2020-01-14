@@ -1,4 +1,4 @@
-﻿namespace Arch.Cqrs.Client.AutoMapper
+﻿namespace Arch.CqrsClient.AutoMapper
 {
     public interface IMapTo<T>
     {

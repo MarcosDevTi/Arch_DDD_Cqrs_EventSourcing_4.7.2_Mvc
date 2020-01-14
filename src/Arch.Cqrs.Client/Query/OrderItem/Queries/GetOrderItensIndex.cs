@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using Arch.Cqrs.Client.Query.OrderItem.Models;
+﻿using Arch.CqrsClient.Query.OrderItem.Models;
 using Arch.Infra.Shared.Cqrs.Query;
+using System.Collections.Generic;
 
-namespace Arch.Cqrs.Client.Query.OrderItem.Queries
+namespace Arch.CqrsClient.Query.OrderItem.Queries
 {
     public class GetOrderItensIndex : IQuery<IReadOnlyList<OrderItemIndex>>
     {

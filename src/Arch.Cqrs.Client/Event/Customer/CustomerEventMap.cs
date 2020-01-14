@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Arch.Infra.Shared.EventSourcing;
+﻿using Arch.Infra.Shared.EventSourcing;
 
-namespace Arch.Cqrs.Client.Event.Customer
+namespace Arch.CqrsClient.Event.Customer
 {
     public class CustomerEventMap : SourceFluent<CustomerCreated>
     {

@@ -1,13 +1,11 @@
-﻿using Arch.Cqrs.Client.Command.Customer;
-using Arch.Cqrs.Client.Command.EventSourcing;
+﻿using Arch.CqrsClient.Command.Customer;
+using Arch.CqrsClient.Command.EventSourcing;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Event;
 using Arch.Infra.Shared.Cqrs;
 using Bogus;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace Arch.Mvc.Controllers

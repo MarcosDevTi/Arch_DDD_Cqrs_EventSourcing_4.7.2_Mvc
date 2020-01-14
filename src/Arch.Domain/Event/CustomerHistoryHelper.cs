@@ -1,8 +1,8 @@
-﻿using System;
+﻿using Arch.Domain.Core.Event;
+using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using Arch.Domain.Core.Event;
-using Newtonsoft.Json;
 
 namespace Arch.Domain.Event
 {

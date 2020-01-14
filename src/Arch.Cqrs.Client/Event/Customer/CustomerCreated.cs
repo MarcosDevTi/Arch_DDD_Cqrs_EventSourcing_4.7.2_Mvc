@@ -1,9 +1,9 @@
-﻿using System;
-using Arch.Cqrs.Client.AutoMapper;
-using Arch.Cqrs.Client.Command.Customer;
+﻿using Arch.CqrsClient.AutoMapper;
+using Arch.CqrsClient.Command.Customer;
 using AutoMapper;
+using System;
 
-namespace Arch.Cqrs.Client.Event.Customer
+namespace Arch.CqrsClient.Event.Customer
 {
     public class CustomerCreated : Infra.Shared.Cqrs.Event.Event, ICustomMapper
     {

@@ -8,7 +8,7 @@
         public decimal Dec { get; set; }
     }
 
-    public class OtherClass: SourceFluent<EventTest>
+    public class OtherClass : SourceFluent<EventTest>
     {
         public override void Configuration(SourceFluent<EventTest> builder)
         {

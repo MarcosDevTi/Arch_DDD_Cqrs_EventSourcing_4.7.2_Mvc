@@ -1,18 +1,15 @@
-﻿using Arch.Cqrs.Client.Command.Customer;
-using Arch.Cqrs.Client.Event.Customer;
+﻿using Arch.Cqrs.Handlers;
+using Arch.CqrsClient.Command.Customer;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Event;
-using Arch.Domain.ValueObjects;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Commands;
 using AutoMapper;
-using Bogus;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 
-namespace Arch.Cqrs.Handlers.Customer
+namespace Arch.CqrsHandlers.Customer
 {
     public class CustomerCommandHandler : CommandHandler<Domain.Models.Customer>,
         ICommandHandler<CreateCustomer>,
@@ -35,7 +32,7 @@ namespace Arch.Cqrs.Handlers.Customer
             ValidateCommand(command);
 
             var customer = Mapper.Map<Domain.Models.Customer>(command);
-            var exists = ExistsValidation(x => 
+            var exists = ExistsValidation(x =>
                 x.EmailAddress == customer.EmailAddress, command.Action, "The customer e-mail has already been taken.");
             if (exists) { return; }
 
@@ -54,7 +51,7 @@ namespace Arch.Cqrs.Handlers.Customer
             var customer = Mapper.Map(command, customerTrackerd);
             customer.UpdateAddress(command.Street, command.Number, command.ZipCode);
 
-            ExistsValidation(x => 
+            ExistsValidation(x =>
                 x.EmailAddress == customer.EmailAddress && x.Id != command.Id, command.Action, "The customer e-mail has already been taken.");
 
             var lastEntity = Db().Include(_ => _.Address).AsNoTracking()
@@ -72,11 +69,11 @@ namespace Arch.Cqrs.Handlers.Customer
                .OrderBy(_ => _.CreatedDate).FirstOrDefault(_ => _.Id == command.Id);
             var entity = Db().Include(_ => _.Address).FirstOrDefault(_ => _.Id == command.Id);
             var address = _architectureContext.Addresses.Find(entity.Address.Id);
-            
+
             var action = _architectureContext.DeleteEntity(entity);
             Commit(entity, action, lastEntity);
         }
 
-        private Domain.Models.Customer GetById(Guid id) => Db().Find(id);
+        private Arch.Domain.Models.Customer GetById(Guid id) => Db().Find(id);
     }
 }

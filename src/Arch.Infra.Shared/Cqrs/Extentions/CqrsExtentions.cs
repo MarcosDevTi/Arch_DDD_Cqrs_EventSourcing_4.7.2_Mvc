@@ -1,9 +1,9 @@
-﻿using System;
-using System.Linq;
-using System.Reflection;
-using Arch.Infra.Shared.Cqrs.Commands;
+﻿using Arch.Infra.Shared.Cqrs.Commands;
 using Arch.Infra.Shared.Cqrs.Query;
 using SimpleInjector;
+using System;
+using System.Linq;
+using System.Reflection;
 
 namespace Arch.Infra.Shared.Cqrs.Extentions
 {
@@ -22,10 +22,10 @@ namespace Arch.Infra.Shared.Cqrs.Extentions
             assemblies.Add(target);
 
             var types = from t in assemblies.SelectMany(a => a.GetExportedTypes())
-                from i in t.GetInterfaces()
-                where i.IsConstructedGenericType &&
-                      handlers.Contains(i.GetGenericTypeDefinition())
-                select new { i, t };
+                        from i in t.GetInterfaces()
+                        where i.IsConstructedGenericType &&
+                              handlers.Contains(i.GetGenericTypeDefinition())
+                        select new { i, t };
 
             foreach (var tp in types)
                 container.Register(tp.i, tp.t, Lifestyle.Transient);

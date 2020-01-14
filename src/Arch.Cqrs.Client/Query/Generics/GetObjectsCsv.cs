@@ -1,13 +1,9 @@
 ﻿using Arch.Infra.Shared.Cqrs.Query;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Arch.Cqrs.Client.Query.Generics
+namespace Arch.CqrsClient.Query.Generics
 {
-    public class GetObjectsCsv: IQuery<IEnumerable<object>>
+    public class GetObjectsCsv : IQuery<IEnumerable<object>>
     {
         public string Properties { get; set; }
         public string Order { get; set; }

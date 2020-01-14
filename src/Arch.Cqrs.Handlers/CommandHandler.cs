@@ -1,11 +1,11 @@
-﻿using Arch.Cqrs.Client.Command.Customer;
-using Arch.Cqrs.Client.Command.Customer.Validation;
+﻿using Arch.CqrsClient.Command.Customer;
 using Arch.Domain.Core;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Core.Event;
 using Arch.Domain.Event;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Commands;
+using Arch.Infra.Shared.Cqrs.Contracts;
 using Arch.Infra.Shared.Cqrs.Event;
 using Arch.Infra.Shared.EventSourcing;
 using Microsoft.EntityFrameworkCore;
@@ -28,7 +28,9 @@ namespace Arch.Cqrs.Handlers
         private readonly IDomainNotification _notifications;
         private readonly IEventRepository _eventRepository;
 
-        protected CommandHandler(ArchCoreContext architectureContext, IDomainNotification notifications, IEventRepository eventRepository, EventSourcingCoreContext eventSourcingContext)
+        protected CommandHandler(
+            ArchCoreContext architectureContext, IDomainNotification notifications, IEventRepository eventRepository,
+            EventSourcingCoreContext eventSourcingContext)
         {
             _architectureContext = architectureContext;
             _notifications = notifications;
@@ -50,14 +52,14 @@ namespace Arch.Cqrs.Handlers
             return false;
         }
 
-        protected T GetLast(Guid id) => 
+        protected T GetLast(Guid id) =>
             Db().AsNoTracking().OrderBy(_ => _.CreatedDate).FirstOrDefault(_ => _.Id == id);
 
-        protected void ValidateCommand(Command cmd)
+        protected void ValidateCommand(CommandAction cmd)
         {
             if (cmd.IsValid()) return;
             foreach (var error in cmd.ValidationResult.Errors)
-               AddNotification(new DomainNotification(cmd.Action, error.ErrorMessage));
+                AddNotification(new DomainNotification(cmd.Action, error.ErrorMessage));
         }
 
         protected void Commit(Event evet)
@@ -103,7 +105,7 @@ namespace Arch.Cqrs.Handlers
 
                 _eventSourcingContext.EventEntities.Add(eventEntity);
                 var teste = JObject.Parse(eventEntity.Data);
-               if (JObject.Parse(eventEntity.Data).HasValues)
+                if (JObject.Parse(eventEntity.Data).HasValues)
                 {
                     _eventSourcingContext.SaveChanges();
                 }

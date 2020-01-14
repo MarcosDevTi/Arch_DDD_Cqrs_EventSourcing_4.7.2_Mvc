@@ -1,11 +1,11 @@
-﻿using System;
+﻿using Arch.CqrsClient.AutoMapper;
+using Arch.CqrsClient.Command.Customer;
+using AutoMapper;
+using System;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
-using Arch.Cqrs.Client.AutoMapper;
-using Arch.Cqrs.Client.Command.Customer;
-using AutoMapper;
 
-namespace Arch.Cqrs.Client.Query.Customer.Models
+namespace Arch.CqrsClient.Query.Customer.Models
 {
     public class CustomerDetails : ICustomMapper
     {

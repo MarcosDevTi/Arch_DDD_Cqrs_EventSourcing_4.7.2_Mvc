@@ -1,11 +1,11 @@
-﻿using Arch.Cqrs.Client.Query.Generics;
+﻿using Arch.CqrsClient.Query.Generics;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Query;
 using System;
 using System.Collections.Generic;
 using System.Dynamic;
 
-namespace Arch.Cqrs.Handlers.Generic
+namespace Arch.CqrsHandlers.Generic
 {
     public class CsvQueryHandler :
         IQueryHandler<GetObjectsCsv, IEnumerable<object>>

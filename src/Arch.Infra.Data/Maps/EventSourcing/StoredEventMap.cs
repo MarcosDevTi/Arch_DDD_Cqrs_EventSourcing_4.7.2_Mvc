@@ -6,7 +6,7 @@ namespace Arch.Infra.Data.Maps.EventSourcing
 {
     public class StoredEventMap : IEntityTypeConfiguration<StoredEvent>
     {
-       
+
 
         public void Configure(EntityTypeBuilder<StoredEvent> builder)
         {

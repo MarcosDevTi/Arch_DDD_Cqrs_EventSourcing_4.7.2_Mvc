@@ -151,8 +151,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ArchCoreContext.cs" />
-    <Compile Include="ArchDbContext.cs" />
-    <Compile Include="EventSourcingContext.cs" />
     <Compile Include="EventSourcingCoreContext.cs" />
     <Compile Include="EventSourcing\EventRespoitory.cs" />
     <Compile Include="Maps\CustomerMap.cs" />
@@ -177,10 +175,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Arch.Domain.Core\Arch.Domain.Core.csproj">
-      <Project>{955836ab-e391-48b7-a7db-a45cd8ddacf7}</Project>
-      <Name>Arch.Domain.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Arch.Domain\Arch.Domain.csproj">
       <Project>{da5ad5c5-ddfb-44b1-abfc-ad6c7db05455}</Project>
       <Name>Arch.Domain</Name>

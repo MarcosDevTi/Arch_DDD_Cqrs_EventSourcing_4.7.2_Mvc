@@ -2,11 +2,6 @@
 using Arch.Domain.ValueObjects;
 using Arch.Infra.Data.Maps;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Arch.Infra.Data
 {
@@ -23,7 +18,7 @@ namespace Arch.Infra.Data
         {
             //optionsBuilder.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=ArchDatabase4;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
             optionsBuilder.UseSqlite("Data Source=ArchDatabase.db");
-          
+
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)

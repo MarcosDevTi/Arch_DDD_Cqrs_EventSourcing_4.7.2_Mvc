@@ -51,12 +51,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DomainNotifications\DomainNotification.cs" />
-    <Compile Include="DomainNotifications\DomainNotificationHandler.cs" />
-    <Compile Include="DomainNotifications\IDomainNotification.cs" />
-    <Compile Include="Entity.cs" />
-    <Compile Include="Event\StoredEvent.cs" />
-    <Compile Include="IUser.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

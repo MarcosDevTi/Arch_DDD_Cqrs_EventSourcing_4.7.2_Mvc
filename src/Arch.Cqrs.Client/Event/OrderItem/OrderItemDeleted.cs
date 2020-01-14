@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Arch.Cqrs.Client.Event.OrderItem
+namespace Arch.CqrsClient.Event.OrderItem
 {
     public class OrderItemDeleted : Infra.Shared.Cqrs.Event.Event
     {

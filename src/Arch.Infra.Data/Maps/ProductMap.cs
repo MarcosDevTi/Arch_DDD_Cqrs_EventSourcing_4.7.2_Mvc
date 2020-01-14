@@ -10,7 +10,7 @@ namespace Arch.Infra.Data.Maps
         {
             //Property(_ => _.CreatedDate).HasColumnType("datetime2");
 
-           
+
         }
 
         public void Configure(EntityTypeBuilder<Product> builder)

@@ -1,11 +1,11 @@
-﻿using System.Linq;
-using Arch.Cqrs.Client.Command.OrderItem;
+﻿using Arch.CqrsClient.Command.OrderItem;
 using Arch.Domain.Models;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Commands;
 using Microsoft.EntityFrameworkCore;
+using System.Linq;
 
-namespace Arch.Cqrs.Handlers.OderItem
+namespace Arch.CqrsHandlers.OderItem
 {
     public class OrderItemCommandHandler :
         ICommandHandler<CreateOrderItem>
@@ -33,7 +33,7 @@ namespace Arch.Cqrs.Handlers.OderItem
                 orderItem.Qtd++;
                 //_architectureContext.OrderItems.Update(orderItem);
             }
-            
+
             _architectureContext.SaveChanges();
         }
     }

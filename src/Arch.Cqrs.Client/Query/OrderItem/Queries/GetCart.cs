@@ -1,7 +1,7 @@
-﻿using Arch.Cqrs.Client.Query.OrderItem.Models;
+﻿using Arch.CqrsClient.Query.OrderItem.Models;
 using Arch.Infra.Shared.Cqrs.Query;
 
-namespace Arch.Cqrs.Client.Query.OrderItem.Queries
+namespace Arch.CqrsClient.Query.OrderItem.Queries
 {
     public class GetCart : IQuery<Cart>
     {

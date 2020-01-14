@@ -1,4 +1,4 @@
-﻿namespace Arch.Cqrs.Client.Query.Customer.Models
+﻿namespace Arch.CqrsClient.Query.Customer.Models
 {
     public class CustomerHistory
     {

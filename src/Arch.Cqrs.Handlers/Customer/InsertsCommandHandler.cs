@@ -1,4 +1,5 @@
-﻿using Arch.Cqrs.Client.Command.Customer;
+﻿using Arch.Cqrs.Handlers;
+using Arch.CqrsClient.Command.Customer;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Event;
 using Arch.Domain.ValueObjects;
@@ -8,7 +9,7 @@ using Bogus;
 using System;
 using System.Collections.Generic;
 
-namespace Arch.Cqrs.Handlers.Customer
+namespace Arch.CqrsHandlers.Customer
 {
     public class InsertsCommandHandler : CommandHandler<Domain.Models.Customer>,
          ICommandHandler<InsertVolumeCustomers>,

@@ -1,0 +1,24 @@
+﻿using Arch.CqrsClient.AutoMapper;
+using AutoMapper;
+using System;
+
+namespace Arch.CqrsClient.Command.Product
+{
+    public class UpdateProduct : ProductCommand, ICustomMapper
+    {
+        public UpdateProduct() { }
+        protected UpdateProduct(Guid id, string name, string description, decimal price)
+        {
+            Id = id;
+            Name = name;
+            Description = description;
+            Price = price;
+        }
+
+        public void Map(IMapperConfigurationExpression cfg) =>
+            cfg.CreateMap<UpdateProduct, Domain.Models.Product>()
+                .ConstructUsing(x => new Domain.Models.Product(x.Name, x.Description, x.Price, x.Id));
+
+        public override bool IsValid() => true;
+    }
+}

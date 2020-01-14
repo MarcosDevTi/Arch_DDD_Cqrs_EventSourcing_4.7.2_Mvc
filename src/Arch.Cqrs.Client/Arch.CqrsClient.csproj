@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DB4F8149-5E0E-4817-A401-80D56A730761}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Arch.Cqrs.Client</RootNamespace>
+    <AssemblyName>Arch.Cqrs.Client</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AutoMapper, Version=7.0.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.7.0.1\lib\net45\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\FluentValidation.8.6.1\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector, Version=4.9.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SimpleInjector.4.9.0\lib\net45\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ComponentModel.Annotations.4.4.1\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AutoMapper\AutoMapperConfig.cs" />
+    <Compile Include="AutoMapper\ICustomMapper.cs" />
+    <Compile Include="AutoMapper\IMapFrom.cs" />
+    <Compile Include="AutoMapper\IMapTo.cs" />
+    <Compile Include="Commands\Cart\AddItemCart.cs" />
+    <Compile Include="Commands\Customer\CreateCustomer.cs" />
+    <Compile Include="Commands\Customer\CustomerCommand.cs" />
+    <Compile Include="Commands\Customer\DeleteCustomer.cs" />
+    <Compile Include="Commands\Customer\InsertVolumeCustomers.cs" />
+    <Compile Include="Commands\Customer\InsertVolumeCustomersDapper.cs" />
+    <Compile Include="Commands\Customer\UpdateAddress.cs" />
+    <Compile Include="Commands\Customer\UpdateCustomer.cs" />
+    <Compile Include="Commands\Customer\UpdateCustomerOfList.cs" />
+    <Compile Include="Commands\Customer\Validation\CreateCustomerValidation.cs" />
+    <Compile Include="Commands\Customer\Validation\CustomerCommandValidation.cs" />
+    <Compile Include="Commands\Customer\Validation\UpdateCustomerValidation.cs" />
+    <Compile Include="Commands\EventSourcing\TruncateEventSourcing.cs" />
+    <Compile Include="Commands\Generics\ListUpdate.cs" />
+    <Compile Include="Commands\OrderItem\CreateOrderItem.cs" />
+    <Compile Include="Commands\OrderItem\DeleteOrderItem.cs" />
+    <Compile Include="Commands\OrderItem\UpdateOrderItem.cs" />
+    <Compile Include="Commands\Order\AddProductToCart.cs" />
+    <Compile Include="Commands\Order\CreateOrder.cs" />
+    <Compile Include="Commands\Product\CreateProduct.cs" />
+    <Compile Include="Commands\Product\DeleteProduct.cs" />
+    <Compile Include="Commands\Product\ProductCommand.cs" />
+    <Compile Include="Commands\Product\UpdateProduct.cs" />
+    <Compile Include="Commands\Product\Validation\CreateProductValidation.cs" />
+    <Compile Include="Commands\Product\Validation\ProductCommandValidation.cs" />
+    <Compile Include="Commands\Product\Validation\UpdateProductValidation.cs" />
+    <Compile Include="Commands\User\LoginUser.cs" />
+    <Compile Include="Commands\User\RegisterUser.cs" />
+    <Compile Include="Event\Customer\CustomerCreated.cs" />
+    <Compile Include="Event\Customer\CustomerDeleted.cs" />
+    <Compile Include="Event\Customer\CustomerEventMap.cs" />
+    <Compile Include="Event\Customer\CustomerUpdated.cs" />
+    <Compile Include="Event\OrderItem\OrderItemCreated.cs" />
+    <Compile Include="Event\OrderItem\OrderItemDeleted.cs" />
+    <Compile Include="Event\OrderItem\OrderItemUpdated.cs" />
+    <Compile Include="Event\Order\ProductAddedToCart.cs" />
+    <Compile Include="Event\Product\ProductCreated.cs" />
+    <Compile Include="Event\Product\ProductDeleted.cs" />
+    <Compile Include="Event\Product\ProductUpdated.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Query\Customer\Models\CustomerDetails.cs" />
+    <Compile Include="Query\Customer\Models\CustomerHistory.cs" />
+    <Compile Include="Query\Customer\Models\CustomerIndex.cs" />
+    <Compile Include="Query\Customer\Queries\GetCustomerDetails.cs" />
+    <Compile Include="Query\Customer\Queries\GetCustomerForUpdate.cs" />
+    <Compile Include="Query\Customer\Queries\GetCustomerHistory.cs" />
+    <Compile Include="Query\Customer\Queries\GetCustomersCsv.cs" />
+    <Compile Include="Query\Customer\Queries\GetCustomersHistory.cs" />
+    <Compile Include="Query\Customer\Queries\GetCustomersPaging.cs" />
+    <Compile Include="Query\Generics\GetObjectsCsv.cs" />
+    <Compile Include="Query\OrderItem\Models\Cart.cs" />
+    <Compile Include="Query\OrderItem\Models\OrderItemIndex.cs" />
+    <Compile Include="Query\OrderItem\Queries\GetCart.cs" />
+    <Compile Include="Query\OrderItem\Queries\GetOrderItensIndex.cs" />
+    <Compile Include="Query\User\UserExists.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Arch.Domain\Arch.Domain.csproj">
+      <Project>{DA5AD5C5-DDFB-44B1-ABFC-AD6C7DB05455}</Project>
+      <Name>Arch.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Arch.Infra.Shared\Arch.Infra.Shared.csproj">
+      <Project>{2f09da02-f611-43cc-ac7b-9370e7e445a0}</Project>
+      <Name>Arch.Infra.Shared</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

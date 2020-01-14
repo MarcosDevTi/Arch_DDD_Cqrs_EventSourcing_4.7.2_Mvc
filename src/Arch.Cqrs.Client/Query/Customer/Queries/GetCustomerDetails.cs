@@ -1,8 +1,8 @@
-﻿using System;
-using Arch.Cqrs.Client.Query.Customer.Models;
+﻿using Arch.CqrsClient.Query.Customer.Models;
 using Arch.Infra.Shared.Cqrs.Query;
+using System;
 
-namespace Arch.Cqrs.Client.Query.Customer.Queries
+namespace Arch.CqrsClient.Query.Customer.Queries
 {
     public class GetCustomerDetails : IQuery<CustomerDetails>
     {

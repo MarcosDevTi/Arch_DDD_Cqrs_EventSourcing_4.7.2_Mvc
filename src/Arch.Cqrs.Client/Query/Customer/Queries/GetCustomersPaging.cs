@@ -1,19 +1,14 @@
 ﻿
-using Arch.Cqrs.Client.Query.Customer.Models;
+using Arch.CqrsClient.Query.Customer.Models;
 using Arch.Infra.Shared.Cqrs.Query;
-using Arch.Paging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Arch.Infra.Shared.Pagination;
 
-namespace Arch.Cqrs.Client.Query.Customer.Queries
+namespace Arch.CqrsClient.Query.Customer.Queries
 {
-    public class GetCustomersPaging: IQuery<PagedResult<CustomerIndex>>
+    public class GetCustomersPaging : IQuery<PagedResult<CustomerIndex>>
     {
-        public GetCustomersPaging(Arch.Paging.Paging paging) => Paging = paging;
+        public GetCustomersPaging(Paging paging) => Paging = paging;
 
-        public Arch.Paging.Paging Paging { get; set; }
+        public Paging Paging { get; set; }
     }
 }

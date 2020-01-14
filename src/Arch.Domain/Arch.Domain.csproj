@@ -51,6 +51,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Core\DomainNotifications\DomainNotification.cs" />
+    <Compile Include="Core\DomainNotifications\DomainNotificationHandler.cs" />
+    <Compile Include="Core\DomainNotifications\IDomainNotification.cs" />
+    <Compile Include="Core\Entity.cs" />
+    <Compile Include="Core\Event\StoredEvent.cs" />
     <Compile Include="Event\CustomerHistoryData.cs" />
     <Compile Include="Event\CustomerHistoryHelper.cs" />
     <Compile Include="Event\IEventRepository.cs" />
@@ -67,10 +72,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Arch.Domain.Core\Arch.Domain.Core.csproj">
-      <Project>{955836ab-e391-48b7-a7db-a45cd8ddacf7}</Project>
-      <Name>Arch.Domain.Core</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Arch.Infra.Shared\Arch.Infra.Shared.csproj">
       <Project>{2f09da02-f611-43cc-ac7b-9370e7e445a0}</Project>
       <Name>Arch.Infra.Shared</Name>

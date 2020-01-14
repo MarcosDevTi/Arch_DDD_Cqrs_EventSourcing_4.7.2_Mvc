@@ -6,7 +6,7 @@ namespace Arch.Domain.Models
 {
     public class User : Entity
     {
-        public User() {}
+        public User() { }
 
         public User(string username, string password)
         {

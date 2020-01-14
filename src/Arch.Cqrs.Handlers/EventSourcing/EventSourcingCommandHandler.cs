@@ -1,13 +1,8 @@
-﻿using Arch.Cqrs.Client.Command.EventSourcing;
+﻿using Arch.CqrsClient.Command.EventSourcing;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Commands;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Arch.Cqrs.Handlers.EventSourcing
+namespace Arch.CqrsHandlers.EventSourcing
 {
     public class EventSourcingCommandHandler :
         ICommandHandler<TruncateEventSourcing>

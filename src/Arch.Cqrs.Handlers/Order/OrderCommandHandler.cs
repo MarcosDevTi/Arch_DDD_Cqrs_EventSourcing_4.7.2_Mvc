@@ -1,5 +1,6 @@
-﻿using Arch.Cqrs.Client.Command.Order;
-using Arch.Cqrs.Client.Event.Order;
+﻿using Arch.Cqrs.Handlers;
+using Arch.CqrsClient.Command.Order;
+using Arch.CqrsClient.Event.Order;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Event;
 using Arch.Domain.Models;
@@ -7,7 +8,7 @@ using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Commands;
 using System.Linq;
 
-namespace Arch.Cqrs.Handlers.Order
+namespace Arch.CqrsHandlers.Order
 {
     public class OrderCommandHandler : CommandHandler<Domain.Models.Order>,
         ICommandHandler<AddProductToCart>
@@ -18,7 +19,7 @@ namespace Arch.Cqrs.Handlers.Order
             ArchCoreContext architectureContext,
             IDomainNotification notifications,
             IEventRepository eventRepository,
-            EventSourcingCoreContext eventSourcingContext) 
+            EventSourcingCoreContext eventSourcingContext)
                 : base(architectureContext, notifications, eventRepository, eventSourcingContext)
         {
             _architectureContext = architectureContext;

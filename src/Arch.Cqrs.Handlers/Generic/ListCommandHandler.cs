@@ -1,4 +1,5 @@
-﻿using Arch.Cqrs.Client.Command.Customer.Generics;
+﻿using Arch.Cqrs.Handlers;
+using Arch.CqrsClient.Command.Customer.Generics;
 using Arch.Domain.Core;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Infra.Data;
@@ -14,7 +15,7 @@ using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 
-namespace Arch.Cqrs.Handlers.Generic
+namespace Arch.CqrsHandlers.Generic
 {
     public class ListCommandHandler :
         ICommandHandler<ListUpdate>

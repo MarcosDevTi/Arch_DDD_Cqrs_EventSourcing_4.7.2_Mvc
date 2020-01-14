@@ -27,7 +27,7 @@ namespace Arch.Infra.Shared.EventSourcing
         public static EventEntity GetEvent(string action, dynamic entity, ICommand command, string who, object lastEntity = null)
         {
             var result = new EventEntity();
-            
+
             result.Id = Guid.NewGuid();
             result.When = DateTime.Now.ToString(CultureInfo.InvariantCulture);
             result.Action = action;
