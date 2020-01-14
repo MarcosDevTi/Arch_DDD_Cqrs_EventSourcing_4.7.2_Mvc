@@ -21,11 +21,8 @@ namespace Arch.CqrsClient.Command.Customer.Validation
                 .Must(HaveMinimumAge)
                 .WithMessage("The customer must have 18 years or more");
 
-        protected bool HaveMinimumAge(DateTime birthDate)
-        {
-            var Years = new DateTime(DateTime.Now.Subtract(birthDate).Ticks).Year - 1;
-            return Years >= 18;
-        }
+        protected bool HaveMinimumAge(DateTime birthDate) =>
+            birthDate <= DateTime.Now.AddYears(-18);
 
 
         protected void ValidateEmail() =>
