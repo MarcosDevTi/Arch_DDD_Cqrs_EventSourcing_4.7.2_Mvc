@@ -1,7 +1,6 @@
 ﻿using Arch.CqrsClient.Command.Customer;
 using Arch.CqrsClient.Query.Customer.Queries;
 using Arch.Domain.Core.DomainNotifications;
-using Arch.Domain.Event;
 using Arch.Infra.Shared.Cqrs;
 using Arch.Infra.Shared.Pagination;
 using System;
@@ -13,20 +12,16 @@ namespace Arch.Mvc.Controllers
     public class CustomerController : BaseController
     {
         private readonly IProcessor _processor;
-        private readonly IEventRepository _eventRepository;
-        private readonly IDomainNotification _notifications;
-        public CustomerController(IProcessor processor, IDomainNotification notifications, IEventRepository eventRepository)
-            : base(notifications)
+
+        public CustomerController(IProcessor processor, IDomainNotification notifications)
+            : base(notifications) => _processor = processor;
+
+        public ActionResult Index(Paging paging, string successMessage = null)
         {
-            _processor = processor;
-            _notifications = notifications;
-            _eventRepository = eventRepository;
+            ViewBag.MessageSuccess = successMessage;
+            return View(_processor.Get(new GetCustomersPaging(paging)));
         }
-        public ActionResult Index(Paging paging)
-        {
-            var pagedResult = _processor.Get(new GetCustomersPaging(paging));
-            return View(pagedResult);
-        }
+
 
         [HttpGet]
         public ActionResult Create()
@@ -40,7 +35,6 @@ namespace Arch.Mvc.Controllers
         [HttpPost]
         public ActionResult Create(CreateCustomer createCustomer)
         {
-
             _processor.Send(createCustomer);
             return ViewWithValidation(createCustomer);
         }
@@ -69,11 +63,6 @@ namespace Arch.Mvc.Controllers
         {
             var customersHistory = _processor.Get(new GetCustomerHistory { AggregateId = aggregateId });
             return View(customersHistory);
-        }
-
-        public ActionResult History()
-        {
-            return View(_eventRepository.GetAllHistories());
         }
     }
 }

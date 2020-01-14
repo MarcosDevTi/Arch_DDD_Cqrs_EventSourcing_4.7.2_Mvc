@@ -14,38 +14,13 @@ namespace Arch.Mvc.Controllers
     {
         private readonly IProcessor _processor;
         public InsertController(IProcessor processor, IDomainNotification notifications, IEventRepository eventRepository)
-           : base(notifications)
-        {
-            _processor = processor;
-        }
-        // GET: Insert
-        public ActionResult Index()
-        {
-            return View();
-        }
+           : base(notifications) => _processor = processor;
+
+        public ActionResult Index() => View();
 
         public ActionResult InsertListLotEf500()
         {
             _processor.Send(new InsertVolumeCustomers(500));
-            return RedirectToAction("Index", "Customer", new { });
-        }
-
-        public ActionResult InsertLot500Dapper()
-        {
-            _processor.Send(new InsertVolumeCustomersDapper(500));
-            return RedirectToAction("Index", "Customer", new { });
-        }
-
-
-        public ActionResult InsertLot5000Dapper()
-        {
-            _processor.Send(new InsertVolumeCustomersDapper(5000));
-            return RedirectToAction("Index", "Customer", new { });
-        }
-
-        public ActionResult InsertOpenCloseDapper500()
-        {
-            _processor.Send(new InsertOpenCloseDapper500(500));
             return RedirectToAction("Index", "Customer", new { });
         }
 
@@ -95,9 +70,6 @@ namespace Arch.Mvc.Controllers
             return RedirectToAction("Index");
         }
 
-        private string GenerateEmails(string str, int i)
-        {
-            return "a" + i + str;
-        }
+        private string GenerateEmails(string str, int i) => "a" + i + str;
     }
 }

@@ -9,15 +9,9 @@ namespace Arch.Mvc.Controllers
     {
         private readonly IDomainNotification _notifications;
 
-        public BaseController(IDomainNotification notifications)
-        {
-            _notifications = notifications;
-        }
+        public BaseController(IDomainNotification notifications) => _notifications = notifications;
 
-        public bool IsValidOperation()
-        {
-            return (!_notifications.HasNotifications());
-        }
+        public bool IsValidOperation() => !_notifications.HasNotifications();
 
         public ActionResult ViewWithValidation(CommandAction command)
         {
@@ -25,7 +19,7 @@ namespace Arch.Mvc.Controllers
             ViewBag.HasError = _notifications.HasNotifications();
             if (_notifications.HasNotifications())
                 return View(command);
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new { successMessage = "Operation Successfully Completed" });
         }
 
 

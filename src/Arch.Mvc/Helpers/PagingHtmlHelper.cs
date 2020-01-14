@@ -92,22 +92,15 @@ namespace Arch.Mvc.Helpers
             }
 
             if (string.IsNullOrEmpty(value))
-            {
                 parameters.Remove(param);
-            }
-            else
-            {
-                parameters[param] = value;
-            }
+            parameters[param] = value;
 
             if (parameters.Count > 0)
             {
                 result.Append('?');
 
                 foreach (string parameterName in parameters)
-                {
                     result.AppendFormat("{0}={1}&", parameterName, parameters[parameterName]);
-                }
 
                 result.Remove(result.Length - 1, 1);
             }
@@ -136,9 +129,7 @@ namespace Arch.Mvc.Helpers
             for (int i = 0; i < 2; i++)
             {
                 if (i <= totalPages)
-                {
                     result.Add(i);
-                }
             }
 
             int current = currentIndex - 3;
@@ -154,9 +145,7 @@ namespace Arch.Mvc.Helpers
             }
 
             for (int i = totalPages - 2; i < totalPages; i++)
-            {
                 result.Add(i);
-            }
 
             return result.ToArray();
         }

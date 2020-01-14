@@ -19,7 +19,6 @@ namespace Arch.CqrsClient.Command.Customer
         }
 
         public Guid Id { get; set; }
-        public UpdateAddress UpdateAddress { get; set; }
 
         public void Map(IMapperConfigurationExpression cfg)
         {

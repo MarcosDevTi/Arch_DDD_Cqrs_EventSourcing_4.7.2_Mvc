@@ -66,11 +66,8 @@
     <Compile Include="Commands\Customer\CreateCustomer.cs" />
     <Compile Include="Commands\Customer\CustomerCommand.cs" />
     <Compile Include="Commands\Customer\DeleteCustomer.cs" />
-    <Compile Include="Commands\Customer\InsertVolumeCustomers.cs" />
-    <Compile Include="Commands\Customer\InsertVolumeCustomersDapper.cs" />
-    <Compile Include="Commands\Customer\UpdateAddress.cs" />
+    <Compile Include="Commands\Inserts\InsertVolumeCustomers.cs" />
     <Compile Include="Commands\Customer\UpdateCustomer.cs" />
-    <Compile Include="Commands\Customer\UpdateCustomerOfList.cs" />
     <Compile Include="Commands\Customer\Validation\CreateCustomerValidation.cs" />
     <Compile Include="Commands\Customer\Validation\CustomerCommandValidation.cs" />
     <Compile Include="Commands\Customer\Validation\UpdateCustomerValidation.cs" />
