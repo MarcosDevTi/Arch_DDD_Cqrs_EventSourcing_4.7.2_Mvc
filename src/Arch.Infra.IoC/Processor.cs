@@ -1,16 +1,16 @@
 ﻿using Arch.Infra.Shared.Cqrs;
 using Arch.Infra.Shared.Cqrs.Commands;
 using Arch.Infra.Shared.Cqrs.Query;
-using SimpleInjector;
+using Autofac;
 using System;
 
 namespace Arch.Infra.IoC
 {
     public class Processor : IProcessor
     {
-        private readonly Container _container;
+        private readonly ILifetimeScope _lifeScope;
 
-        public Processor(Container container) => _container = container;
+        public Processor(ILifetimeScope lifeScope) => _lifeScope = lifeScope;
 
         public void Send<TCommand>(TCommand command) where TCommand : ICommand =>
             GetHandle(typeof(ICommandHandler<>), command.GetType()).Handle((dynamic)command);
@@ -19,6 +19,6 @@ namespace Arch.Infra.IoC
             GetHandle(typeof(IQueryHandler<,>), query.GetType(), typeof(TResult)).Handle((dynamic)query);
 
         private dynamic GetHandle(Type handle, params Type[] types) =>
-            _container.GetInstance(handle.MakeGenericType(types));
+            _lifeScope.Resolve(handle.MakeGenericType(types));
     }
 }

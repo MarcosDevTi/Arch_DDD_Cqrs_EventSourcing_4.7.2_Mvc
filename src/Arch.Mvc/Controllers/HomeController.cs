@@ -1,11 +1,18 @@
-﻿using System.Web.Mvc;
+﻿using Arch.Mvc.Models;
+using System.Web.Mvc;
 
 namespace Arch.Mvc.Controllers
 {
     public class HomeController : Controller
     {
+        private readonly ITest _test;
+        public HomeController(ITest test)
+        {
+            _test = test;
+        }
         public ActionResult Index()
         {
+            //_test.Add();
             return View();
         }
 

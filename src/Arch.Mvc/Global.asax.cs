@@ -1,4 +1,5 @@
-﻿using SimpleInjector;
+﻿using Arch.Mvc.App_Start;
+using Autofac;
 using StackExchange.Profiling;
 using System.Web.Mvc;
 using System.Web.Optimization;
@@ -10,7 +11,9 @@ namespace Arch.Mvc
     {
         protected void Application_Start()
         {
-            SimpleInjectorInitializer.Initialize(new Container());
+            //SimpleInjectorInitializer.Initialize(new Container());
+            AutoFacRegistration.Initialize(new ContainerBuilder());
+
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);

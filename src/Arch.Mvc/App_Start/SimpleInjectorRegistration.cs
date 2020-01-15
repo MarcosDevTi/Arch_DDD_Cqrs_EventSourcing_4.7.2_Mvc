@@ -30,7 +30,6 @@ namespace Arch.Mvc
         private static void InitializeContainer()
         {
             ArchBootstrapper.Register(_container);
-            var miniprofilerDb = "Data Source=(localdb)\\MSSQLLocalDB;Catalog=ArchDatabase4;Trusted_Connection=True;Application Name=Investment Manager MiniProfiler";
 
             MiniProfiler.Configure(new MiniProfilerOptions()
             {
