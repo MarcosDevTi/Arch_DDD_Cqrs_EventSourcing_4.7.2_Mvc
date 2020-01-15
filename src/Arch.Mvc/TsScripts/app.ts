@@ -1,4 +1,7 @@
-﻿function Welcome(person: string) {
+﻿import { Customer } from "./customer";
+
+function Welcome(person: string) {
+    new Customer().add();
     return "<h2>Hello " + person + ", Lets learn TypeScript</h2>";
 }
 

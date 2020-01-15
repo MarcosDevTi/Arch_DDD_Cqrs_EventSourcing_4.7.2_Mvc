@@ -309,6 +309,7 @@
     <Compile Include="Helpers\EventSourcingHelper.cs" />
     <Compile Include="Helpers\PagingHtmlHelper.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <TypeScriptCompile Include="TsScripts\customer.ts" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />

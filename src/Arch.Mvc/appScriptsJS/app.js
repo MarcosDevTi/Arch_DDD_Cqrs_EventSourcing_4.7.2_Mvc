@@ -1,4 +1,8 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var customer_1 = require("./customer");
 function Welcome(person) {
+    new customer_1.Customer().add();
     return "<h2>Hello " + person + ", Lets learn TypeScript</h2>";
 }
 function ClickMeButton() {
