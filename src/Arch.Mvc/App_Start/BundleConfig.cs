@@ -24,6 +24,9 @@ namespace Arch.Mvc
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
                       "~/Content/site.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/appscripts").Include(
+                    "~/appScriptsJS/app.js"));
         }
     }
 }
