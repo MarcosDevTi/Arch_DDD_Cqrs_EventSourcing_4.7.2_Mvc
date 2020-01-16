@@ -103,9 +103,17 @@
       <Project>{4c986b74-c69f-4604-9d84-d39a6c87e746}</Project>
       <Name>Arch.CqrsHandlers</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Arch.CqrsHandlers.Dapper\Arch.CqrsHandlers.Dapper.csproj">
+      <Project>{AD702525-89DE-45B3-9DCC-E8F63B9D04B5}</Project>
+      <Name>Arch.CqrsHandlers.Dapper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Arch.Domain\Arch.Domain.csproj">
       <Project>{da5ad5c5-ddfb-44b1-abfc-ad6c7db05455}</Project>
       <Name>Arch.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Arch.Infra.DataDapper\Arch.Infra.DataDapper.csproj">
+      <Project>{281A7163-E7E3-45C8-9104-1DC16CE3DBF8}</Project>
+      <Name>Arch.Infra.DataDapper</Name>
     </ProjectReference>
     <ProjectReference Include="..\Arch.Infra.Data\Arch.Infra.Data.csproj">
       <Project>{2e15a55e-4dd5-4d7d-8eee-e67f15d4d903}</Project>

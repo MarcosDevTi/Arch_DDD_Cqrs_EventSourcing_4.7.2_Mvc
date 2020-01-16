@@ -75,6 +75,7 @@
     <Compile Include="Cqrs\IProcessor.cs" />
     <Compile Include="Cqrs\Query\IQuery.cs" />
     <Compile Include="Cqrs\Query\IQueryHandler.cs" />
+    <Compile Include="DapperMap\IMap.cs" />
     <Compile Include="EventSourcing\EventEntity.cs" />
     <Compile Include="EventSourcing\EventSourceExtensions.cs" />
     <Compile Include="EventSourcing\EventTest.cs" />

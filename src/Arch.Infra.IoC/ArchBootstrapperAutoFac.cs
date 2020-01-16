@@ -5,6 +5,7 @@ using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Event;
 using Arch.Infra.Data;
 using Arch.Infra.Data.EventSourcing;
+using Arch.Infra.DataDapper.Sqlite;
 using Arch.Infra.Shared.Cqrs;
 using Arch.Infra.Shared.Cqrs.Extentions;
 using Arch.Mvc.Models;
@@ -25,6 +26,7 @@ namespace Arch.Infra.IoC
             builder.AddCqrsAutoFac<CustomerCommandHandler>();
             builder.RegisterType<DomainNotificationHandler>().As<IDomainNotification>().InstancePerRequest();
             builder.RegisterType<EventRespoitory>().As<IEventRepository>().InstancePerRequest();
+            builder.RegisterType<DapperContext>();
         }
     }
 }

@@ -6,7 +6,7 @@ namespace Arch.Domain.Core
     {
         public Entity() => CreatedDate = DateTime.Now;
 
-        public Guid Id { get; protected set; }
+        public Guid Id { get; set; }
 
         public DateTime CreatedDate { get; set; }
 
