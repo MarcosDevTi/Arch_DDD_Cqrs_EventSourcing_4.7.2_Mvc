@@ -39,6 +39,22 @@ namespace Arch.Infra.Shared.EventSourcing
             return result;
         }
 
+
+        public static EventEntity GetEvent(string action, Guid aggregateId, ICommand command, string who, object lastEntity = null)
+        {
+            var result = new EventEntity();
+
+            result.Id = Guid.NewGuid();
+            result.When = DateTime.Now.ToString(CultureInfo.InvariantCulture);
+            result.Action = action;
+            result.Data = BuildJsonDataCommand(null, command, lastEntity);
+            result.AggregateId = aggregateId;
+            result.Who = who;
+            result.Assembly = "";
+
+            return result;
+        }
+
         public Guid Id { get; set; }
         public string When { get; set; }
         public string Action { get; set; }

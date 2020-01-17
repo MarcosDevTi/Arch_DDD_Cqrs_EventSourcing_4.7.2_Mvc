@@ -1,7 +1,5 @@
 ﻿using Arch.CqrsClient.Command.Customer;
-using Arch.Domain.Core;
 using Arch.Domain.Core.DomainNotifications;
-using Arch.Domain.Models;
 using Arch.Infra.DataDapper.Sqlite;
 using Arch.Infra.Shared.Cqrs.Commands;
 using Arch.Infra.Shared.Cqrs.Contracts;
@@ -39,42 +37,52 @@ namespace Arch.CqrsHandlers.Dapper.Customers
             if (exists) { return; }
 
             var idAdress = Guid.NewGuid();
+            var idCustomer = Guid.NewGuid();
 
 
             if (_notifications.HasNotifications()) return;
             AddAddress(command, idAdress);
-            AddCustomer(command, idAdress);
+            AddCustomer(command, idAdress, idCustomer);
 
             var action = "Customer Created";
-            Commit(new Customer(), command, "Customer Created");
+            Commit(idCustomer, command, "Customer Created");
         }
 
-        protected void Commit(Entity entity, ICommand command, string action, object lastEntity = null)
+        protected void Commit(Guid aggregateId, ICommand command, string action, object lastEntity = null)
+
         {
 
             if (true)
             {
-                var eventEntity = EventEntity.GetEvent(action, entity, command, "Marcos", lastEntity);
+                var eventEntity = EventEntity.GetEvent(action, aggregateId, command, "Marcos", lastEntity);
 
                 if (JObject.Parse(eventEntity.Data).HasValues)
                 {
-                    // _eventSourcingContext.EventEntities.Add(eventEntity);
+                    AddEvent(command, aggregateId);
                 }
             }
             else
                 AddNotification(new DomainNotification("Commit", "We had a problem during saving your data."));
         }
 
+        private void AddEvent(ICommand command, Guid aggregateId)
+        {
+            var json = EventEntity.GetEvent("Customer Created", aggregateId, command, "Marcos");
+            var sb = new StringBuilder()
+                .AppendLine($"INSERT INTO EventEntities (Id, Action, AggregateId, Assembly, Data, When, Who)" + " VALUES " +
+                $"(\"{Guid.NewGuid()}\", \"Customer Created\", \"{aggregateId}\", \"_\" , \"'{json.Data}'\", \"{DateTime.Now}\", \"Marcos\")");
+            _eventSourcingContext.Connection.Execute(sb.ToString(), new { });
+        }
 
 
-        private void AddCustomer(CreateCustomer command, Guid idAddress)
+        private void AddCustomer(CreateCustomer command, Guid idAddress, Guid idCustomer)
         {
             var insertCustomer = new StringBuilder()
                 .AppendLine("INSERT INTO CUSTOMERS")
                 .AppendLine("(Id, AddressId, BirthDate, EmailAddress, FirstName, LastName, Score, CreatedDate)")
                 .AppendLine("VALUES ")
-                .AppendLine($"({Guid.NewGuid()}, {idAddress}, {command.BirthDate},  {command.Email}, {command.FirstName},")
-                .AppendLine($"{command.LastName}, {command.Score}, {DateTime.Now})")
+                .AppendLine($"(\"{idCustomer}\", \"{idAddress}\", \"{command.BirthDate}\",  \"{command.Email}\", \"{command.FirstName}\",")
+                .AppendLine($"\"{command.LastName}\", {command.Score}, \"{DateTime.Now}\")")
                 .ToString();
 
             _context.Connection.Execute(insertCustomer, new { });
@@ -86,7 +94,7 @@ namespace Arch.CqrsHandlers.Dapper.Customers
                    .AppendLine("INSERT INTO ADDRESSES")
                    .AppendLine("(Id, City, Number, Street, ZipCode, CreatedDate)")
                    .AppendLine("VALUES ")
-                   .AppendLine($"({idAddress}, {command.City}, {command.Number}, {command.Street}, {command.ZipCode}, {DateTime.Now})").ToString();
+                   .AppendLine($"(\"{idAddress}\", \"{command.City}\", \"{command.Number}\", \"{command.Street}\", \"{command.ZipCode}\", \"{DateTime.Now}\")").ToString();
 
             _context.Connection.Execute(insertAddress, new { });
         }
