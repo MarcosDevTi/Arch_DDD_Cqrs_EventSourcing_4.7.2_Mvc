@@ -8,6 +8,7 @@ using AutoMapper;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Linq;
+using Arch.Domain;
 
 namespace Arch.CqrsHandlers.Customer
 {
@@ -22,7 +23,9 @@ namespace Arch.CqrsHandlers.Customer
             ArchCoreContext architectureContext,
             IDomainNotification notifications,
             IEventRepository eventRepository,
-            EventSourcingCoreContext eventSourcingContext) : base(architectureContext, notifications, eventRepository, eventSourcingContext)
+            EventSourcingCoreContext eventSourcingContext,
+            AuthService authService) 
+            : base(architectureContext, notifications, eventRepository, eventSourcingContext, authService)
         {
             _architectureContext = architectureContext;
         }

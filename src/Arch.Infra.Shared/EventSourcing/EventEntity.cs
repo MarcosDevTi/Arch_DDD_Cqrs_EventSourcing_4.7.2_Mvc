@@ -93,8 +93,8 @@ namespace Arch.Infra.Shared.EventSourcing
             });
 
             jo.Add("Action", entity.Action);
-            jo.Add("When", entity.When);
-            jo.Add("Who", entity.Who);
+            jo.Add("Quand", entity.When);
+            jo.Add("Qui", entity.Who);
 
             return jo;
         }

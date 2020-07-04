@@ -36,33 +36,34 @@ namespace Arch.Mvc.Helpers
                 pagedResult.Paging.PageIndex,
                 (int)Math.Ceiling((double)pagedResult.TotalNumberOfItems / pagedResult.Paging.PageSize));
 
-            for (int i = 0; i < pagingIndexes.Length; i++)
+            for (var i = 0; i < pagingIndexes.Length; i++)
             {
                 if (i > 0 && pagingIndexes[i - 1] != pagingIndexes[i] - 1)
                 {
                     var extraLiBuilder = new TagBuilder("li");
                     extraLiBuilder.InnerHtml = "<span>&hellip;</span>";
-                    extraLiBuilder.AddCssClass("disabled");
+                    extraLiBuilder.AddCssClass("disabled page-item");
                     listBuilder.InnerHtml += extraLiBuilder.ToString();
                 }
 
                 var itemBuilder = new TagBuilder("li");
+                itemBuilder.AddCssClass("page-item");
                 if (pagedResult.Paging.PageIndex == pagingIndexes[i])
                 {
                     itemBuilder.InnerHtml = "<span>" + (pagingIndexes[i] + 1).ToString() + "</span>";
-                    itemBuilder.AddCssClass("active");
+                    itemBuilder.AddCssClass("page-item active");
                 }
                 else
                 {
                     var pagingLinkBuilder = new TagBuilder("a");
 
-                    string extendedUrl = url
+                    var extendedUrl = url
                         .SetParameter("sortColumn", pagedResult.Paging.SortColumn)
                         .SetParameter("sortDirection", pagedResult.Paging.SortDirection.ToString())
                         .SetParameter("pageIndex", pagingIndexes[i].ToString());
 
                     pagingLinkBuilder.MergeAttribute("href", extendedUrl);
-                    pagingLinkBuilder.AddCssClass("paging");
+                    pagingLinkBuilder.AddCssClass("paging page-link");
                     pagingLinkBuilder.SetInnerText((pagingIndexes[i] + 1).ToString());
 
                     itemBuilder.InnerHtml = pagingLinkBuilder.ToString();

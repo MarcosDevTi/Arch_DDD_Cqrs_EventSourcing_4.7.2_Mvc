@@ -1,5 +1,7 @@
-﻿using Arch.CqrsClient.Command.Customer;
+﻿using Arch.Cqrs.Client.Query.Generics;
+using Arch.CqrsClient.Command.Customer;
 using Arch.CqrsClient.Query.Customer.Queries;
+using Arch.Domain;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Infra.Shared.Cqrs;
 using Arch.Infra.Shared.Pagination;
@@ -12,16 +14,29 @@ namespace Arch.Mvc.Controllers
     public class CustomerController : BaseController
     {
         private readonly IProcessor _processor;
+        private readonly AuthService _authService;
 
-        public CustomerController(IProcessor processor, IDomainNotification notifications)
-            : base(notifications) => _processor = processor;
+        public CustomerController(
+            IProcessor processor,
+            IDomainNotification notifications, AuthService authService)
+            : base(notifications)
+        {
+            _processor = processor;
+            _authService = authService;
+        }
 
         public ActionResult Index(Paging paging, string successMessage = null)
         {
+            ViewBag.User = _authService.UserLoggedIn;
             ViewBag.MessageSuccess = successMessage;
             return View(_processor.Get(new GetCustomersPaging(paging)));
         }
 
+        public ActionResult UserChange(string userName)
+        {
+            _authService.UserLoggedIn = userName;
+            return RedirectToAction("Index");
+        }
 
         [HttpGet]
         public ActionResult Create()
@@ -63,6 +78,13 @@ namespace Arch.Mvc.Controllers
         {
             var customersHistory = _processor.Get(new GetCustomerHistory { AggregateId = aggregateId });
             return View(customersHistory);
+        }
+
+        [HttpGet, Route("history-by-users")]
+        public ActionResult HistoryByUsers(string userId)
+        {
+            var result = _processor.Get(new GetEntityByUserId { UserId = userId });
+            return View(result);
         }
     }
 }

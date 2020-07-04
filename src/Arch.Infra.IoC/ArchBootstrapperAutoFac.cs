@@ -1,7 +1,7 @@
 ﻿using Arch.CqrsClient.AutoMapper;
 using Arch.CqrsClient.Command.Customer;
 using Arch.CqrsHandlers.Customer;
-using Arch.CqrsHandlers.Dapper.Customers;
+using Arch.Domain;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Event;
 using Arch.Infra.Data;
@@ -18,6 +18,7 @@ namespace Arch.Infra.IoC
     {
         public static void Register(ContainerBuilder builder)
         {
+            builder.RegisterType<AuthService>().SingleInstance();
             AutoMapperConfig.Register<CreateCustomer>();
             builder.RegisterType<Test>().As<ITest>();
 

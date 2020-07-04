@@ -7,6 +7,7 @@ using Arch.Domain.Models;
 using Arch.Infra.Data;
 using Arch.Infra.Shared.Cqrs.Commands;
 using System.Linq;
+using Arch.Domain;
 
 namespace Arch.CqrsHandlers.Order
 {
@@ -19,8 +20,9 @@ namespace Arch.CqrsHandlers.Order
             ArchCoreContext architectureContext,
             IDomainNotification notifications,
             IEventRepository eventRepository,
-            EventSourcingCoreContext eventSourcingContext)
-                : base(architectureContext, notifications, eventRepository, eventSourcingContext)
+            EventSourcingCoreContext eventSourcingContext,
+            AuthService authService)
+                : base(architectureContext, notifications, eventRepository, eventSourcingContext, authService)
         {
             _architectureContext = architectureContext;
         }

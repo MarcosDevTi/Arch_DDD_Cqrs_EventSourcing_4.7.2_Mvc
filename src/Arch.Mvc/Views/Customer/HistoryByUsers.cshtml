@@ -1,0 +1,48 @@
+﻿@model IEnumerable<Arch.Cqrs.Client.Query.Generics.EntityByUser>
+
+@{
+    ViewBag.Title = "Histoires";
+}
+
+    <h2>Histoires</h2>
+
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.AggregatedId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Action)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Who)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.When)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.AggregatedId)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Action)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Who)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.When)
+        </td>
+        <td>
+            @Html.ActionLink("Voir l'historique", "History", new { aggregateId = item.AggregatedId }, new { @class = "btn btn-outline-success" })
+            
+        </td>
+    </tr>
+}
+
+</table>

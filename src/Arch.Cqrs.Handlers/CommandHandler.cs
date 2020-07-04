@@ -1,4 +1,5 @@
 ﻿using Arch.CqrsClient.Command.Customer;
+using Arch.Domain;
 using Arch.Domain.Core;
 using Arch.Domain.Core.DomainNotifications;
 using Arch.Domain.Core.Event;
@@ -27,15 +28,17 @@ namespace Arch.Cqrs.Handlers
         private readonly EventSourcingCoreContext _eventSourcingContext;
         private readonly IDomainNotification _notifications;
         private readonly IEventRepository _eventRepository;
+        private readonly AuthService _authService;
 
         protected CommandHandler(
             ArchCoreContext architectureContext, IDomainNotification notifications, IEventRepository eventRepository,
-            EventSourcingCoreContext eventSourcingContext)
+            EventSourcingCoreContext eventSourcingContext, AuthService authService)
         {
             _architectureContext = architectureContext;
             _notifications = notifications;
             _eventRepository = eventRepository;
             _eventSourcingContext = eventSourcingContext;
+            _authService = authService;
         }
 
         protected DbSet<T> Db() => _architectureContext.Set<T>();
@@ -67,7 +70,7 @@ namespace Arch.Cqrs.Handlers
             if (_notifications.HasNotifications()) return;
             if (_architectureContext.SaveChanges() > 0)
             {
-                evet.Who = "Marcos";
+                evet.Who = _authService.UserLoggedIn;
                 var anterior = _eventRepository.GetLastEvent(evet.AggregateId);
                 var objJson = anterior != null
                     ? ReadToObject(((StoredEvent)anterior).Data, ((StoredEvent)anterior).Assembly)
@@ -101,7 +104,8 @@ namespace Arch.Cqrs.Handlers
             if (_notifications.HasNotifications()) return;
             if (_architectureContext.SaveChanges() > 0)
             {
-                var eventEntity = EventEntity.GetEvent(action, entity, command, "Marcos", lastEntity);
+                var eventEntity = EventEntity.GetEvent(
+                    action, entity, command, _authService.UserLoggedIn, lastEntity);
 
                 _eventSourcingContext.EventEntities.Add(eventEntity);
                 var teste = JObject.Parse(eventEntity.Data);
@@ -119,7 +123,7 @@ namespace Arch.Cqrs.Handlers
             if (_notifications.HasNotifications()) return;
             if (_architectureContext.SaveChanges() > 0)
             {
-                var eventEntity = new EventEntity(action, entity, "Marcos", lastEntity);
+                var eventEntity = new EventEntity(action, entity, _authService.UserLoggedIn, lastEntity);
 
                 _eventSourcingContext.Add(eventEntity);
                 _eventSourcingContext.SaveChanges();

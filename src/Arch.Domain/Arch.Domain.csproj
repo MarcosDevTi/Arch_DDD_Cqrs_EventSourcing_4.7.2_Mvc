@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AuthService.cs" />
     <Compile Include="Core\DomainNotifications\DomainNotification.cs" />
     <Compile Include="Core\DomainNotifications\DomainNotificationHandler.cs" />
     <Compile Include="Core\DomainNotifications\IDomainNotification.cs" />

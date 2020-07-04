@@ -1,4 +1,5 @@
-﻿using Arch.Infra.Shared.EventSourcing;
+﻿using Arch.Domain.ValueObjects;
+using Arch.Infra.Shared.EventSourcing;
 
 namespace Arch.Domain.Models
 {
@@ -13,6 +14,15 @@ namespace Arch.Domain.Models
                 .DisplayName(_ => _.EmailAddress, "Couriel")
                 .DisplayName(_ => _.BirthDate, "Date naissance");
             //.Ignore(_ => _.BirthDate)
+        }
+    }
+
+    public class AddressMapSource : SourceFluent<Address>
+    {
+        public override void Configuration(SourceFluent<Address> builder)
+        {
+            builder
+                .DisplayName(_ => _.City, "Ville");
         }
     }
 }

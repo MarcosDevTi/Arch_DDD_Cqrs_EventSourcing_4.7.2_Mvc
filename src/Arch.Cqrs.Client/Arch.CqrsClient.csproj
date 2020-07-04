@@ -111,6 +111,8 @@
     <Compile Include="Query\Customer\Queries\GetCustomersCsv.cs" />
     <Compile Include="Query\Customer\Queries\GetCustomersHistory.cs" />
     <Compile Include="Query\Customer\Queries\GetCustomersPaging.cs" />
+    <Compile Include="Query\Generics\EntityByUser.cs" />
+    <Compile Include="Query\Generics\GetEntities.cs" />
     <Compile Include="Query\Generics\GetObjectsCsv.cs" />
     <Compile Include="Query\OrderItem\Models\Cart.cs" />
     <Compile Include="Query\OrderItem\Models\OrderItemIndex.cs" />
